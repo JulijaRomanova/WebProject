@@ -1,0 +1,11 @@
+commit fee491fc3a9df579ac862d6190360c1ad61da39d (HEAD -> master)
+Author: Julia <youlija.romanova@gmail.com>
+Date:   Tue Feb 12 20:17:54 2019 +0300
+
+    Add status.txt containing git rep status outputs
+
+commit e64768cf08d1081ab93823f6d0428524862a51f1
+Author: Julia <youlija.romanova@gmail.com>
+Date:   Tue Feb 12 20:09:55 2019 +0300
+
+    add .gitignore
