@@ -1,0 +1,144 @@
+h1
+{
+    font-family: "Tahoma", serif;
+    color: #000060; 
+    font-weight: bold;
+    margin-left: 4%;
+    
+}
+header
+{
+    display: inline-block;
+}
+.back-gr
+{
+    background-color: #1294bb;
+    width: 100%;
+   
+    
+}
+.fon
+{
+    background: url(fon.jpg) ;
+}
+
+.butt1
+{
+    border-radius:10%;
+    position: fixed ;
+    left: 90%;
+    background: #1294bb;
+    color: #edf1f1 ;
+    width: 9%;
+    height:  8%;
+    font-size: 50%;
+    font-family: SEGOE PRINT;
+    
+}
+.butt2
+{
+    border-radius:10%;
+    position: fixed ;
+    left: 79%;
+    background: #1294bb;
+    color: #edf1f1 ;
+    width: 9%;
+    height:  8%;
+    font-size: 70%;
+    font-family: SEGOE PRINT;
+    
+}
+.butt3
+{
+
+    background: #1294bb;
+    color: #edf1f1 ;
+    width: 100%;
+    height:  10%;
+    font-family: SEGOE PRINT;
+    
+}
+.butt4
+{
+
+    border-radius:10%;
+    position: fixed ;
+    left: 50%;
+    background: #1294bb;
+    color: #edf1f1 ;
+    width: 9%;
+    height:  8%;
+    font-size: 70%;
+    font-family: SEGOE PRINT;
+    
+}
+.photo1
+{
+    width: 100%;
+    height: 100%;
+
+}
+.username
+{
+    font-family: "SEGOE PRINT", serif;
+    margin-left: 4%;
+    color: #000060; 
+    
+}
+.userphotopost {
+    max-width: 500px;
+    height: auto;
+    right: 10%;
+    margin: 10% auto 0;
+    position: relative;
+    border: 2% solid hsla(21, 37%, 15%, 0.3);
+  }
+  .userphotopost img {
+    max-width: 500px;
+    height: auto;
+    display: inline-block;
+  }
+  .userphotopost h2 {
+    margin: 0;
+    position: absolute;
+    line-height: 1.1;
+    font-size: 1.2em;
+    font-weight: 200;
+    left: 0;
+    bottom: 0;
+    padding: 5% 7% 5% 10%;
+    background: hsla(21, 37%, 15%, 0.2);
+    color: white;
+    font-family: "SEGOE PRINT", sans-serif;
+  }
+  .date {
+    font-family: "SEGOE PRINT", sans-serif;
+    font-size: .7em;
+  }
+
+  .parant
+  {
+        float: left;
+        width: 100%;
+        background: #1294bb;
+  }
+  
+
+  .child {
+    
+    
+    padding: 10px;
+    float: left;
+    width: 29%;
+
+}
+.m 
+{
+    font-family: "Tahoma", serif;
+    color: #000060; 
+    font-weight: bold;
+    margin-left: 4%;
+}
+
+
+
