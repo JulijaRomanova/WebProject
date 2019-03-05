@@ -12,10 +12,8 @@ header
 }
 .back-gr
 {
-    background-color: #1294bb;
+    background: url(fon1.jpg);
     width: 100%;
-   
-    
 }
 .fon
 {
@@ -27,7 +25,7 @@ header
     border-radius:10%;
     position: fixed ;
     left: 90%;
-    background: #1294bb;
+    background: #a086e7;
     color: #edf1f1 ;
     width: 9%;
     height:  8%;
@@ -40,7 +38,7 @@ header
     border-radius:10%;
     position: fixed ;
     left: 79%;
-    background: #1294bb;
+    background: #a086e7;
     color: #edf1f1 ;
     width: 9%;
     height:  8%;
@@ -51,7 +49,7 @@ header
 .butt3
 {
 
-    background: #1294bb;
+    background: #a086e7;
     color: #edf1f1 ;
     width: 100%;
     height:  10%;
@@ -60,23 +58,22 @@ header
 }
 .butt4
 {
-
-    border-radius:10%;
-    position: fixed ;
-    left: 50%;
-    background: #1294bb;
-    color: #edf1f1 ;
-    width: 9%;
-    height:  8%;
-    font-size: 70%;
-    font-family: SEGOE PRINT;
     
+    width: 3%;
+    height:  3%;
+    border-color: #000060;
+    margin-left: 70%;
+        
 }
 .photo1
 {
-    width: 100%;
-    height: 100%;
-
+    width: 50%;
+    height: 90%;
+}
+.photo2
+{
+    width: 110%;
+    height: 150%;
 }
 .username
 {
@@ -120,7 +117,7 @@ header
   {
         float: left;
         width: 100%;
-        background: #1294bb;
+        background: url(fon1.jpg);
   }
   
 
