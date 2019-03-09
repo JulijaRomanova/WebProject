@@ -12,12 +12,12 @@ header
 }
 .back-gr
 {
-    background: url(fon1.jpg);
+    background: url(img/fon1.jpg);
     width: 100%;
 }
 .fon
 {
-    background: url(fon.jpg) ;
+    background: url(img/fon.jpg) ;
 }
 
 .butt1
@@ -31,6 +31,7 @@ header
     height:  8%;
     font-size: 50%;
     font-family: SEGOE PRINT;
+    position: fixed;
     
 }
 .butt2
@@ -44,6 +45,7 @@ header
     height:  8%;
     font-size: 70%;
     font-family: SEGOE PRINT;
+   
     
 }
 .butt3
@@ -83,26 +85,27 @@ header
     
 }
 .userphotopost {
-    max-width: 500px;
+    width: auto;
     height: auto;
-    right: 10%;
-    margin: 10% auto 0;
+
+    padding-left: 15%;
+    margin: 7% auto 0;
     position: relative;
     border: 2% solid hsla(21, 37%, 15%, 0.3);
   }
   .userphotopost img {
-    max-width: 500px;
+    max-width: 50%;
     height: auto;
-    display: inline-block;
+    
   }
   .userphotopost h2 {
     margin: 0;
     position: absolute;
+    
     line-height: 1.1;
     font-size: 1.2em;
     font-weight: 200;
-    left: 0;
-    bottom: 0;
+    bottom: 1%;
     padding: 5% 7% 5% 10%;
     background: hsla(21, 37%, 15%, 0.2);
     color: white;
@@ -112,12 +115,42 @@ header
     font-family: "SEGOE PRINT", sans-serif;
     font-size: .7em;
   }
+  .decription{
+    position:absolute; right: 8%; border:3px #000060 double; width:33%;
+    box-shadow:3px 3px 5px #999;
+    top: 0%;
+    margin: 0;
+    font-family: "SEGOE PRINT", sans-serif;
+   
+    background: hsla(307, 29%, 56%, 0.7);
+  }
+
+  .decription1{
+    position:absolute; right: 8%; border:3px #000060 double; width:31%;
+    box-shadow:3px 3px 5px #999;
+    top: 38px;
+    margin: 0;
+    font-family: "SEGOE PRINT", sans-serif;
+    padding: 1%;
+    background: hsla(309, 33%, 73%, 0.7);
+  }
+
+ .decription2
+  {
+    position:absolute;right: -0.5%;  border:3px #000060 double ;width:98%;
+    top:102%;
+    margin: 0;
+    font-family: "SEGOE PRINT", sans-serif;
+    padding: 1%;
+    background: hsla(309, 33%, 73%, 0.7);
+    word-wrap: break-word; 
+  }
 
   .parant
   {
         float: left;
         width: 100%;
-        background: url(fon1.jpg);
+        background: url(img/fon1.jpg);
   }
   
 
@@ -136,6 +169,3 @@ header
     font-weight: bold;
     margin-left: 4%;
 }
-
-
-
