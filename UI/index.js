@@ -8,6 +8,8 @@ let photoPosts = [
       createdAt: new Date('2019-02-21T16:30:00'),
       author: 'Romanova Julia',
       photoLink: 'img/nature.jpg',
+      likes: [],
+      hashtags : ['#BSU', '#FPMI', '#like']
       
      },
   
@@ -16,7 +18,9 @@ let photoPosts = [
        descriprion: 'Nature is beautiful!',
        createdAt: new Date('2019-02-11T12:12:00'),
        author: 'Miriniv Misha',
-       photoLink: 'img/2.jpg'
+       photoLink: 'img/2.jpg',
+       likes: [],
+       hashtags : ['#BSU', '#FPMI']
      },
 
      {
@@ -24,7 +28,9 @@ let photoPosts = [
         descriprion: ' Gorgeous sunsets, beautiful countryside, the best people-that is what is sometimes missing...',
         createdAt: new Date('2019-01-10T17:30:00'),
         author: 'Alena Holubeva',
-        photoLink: 'img/3.jpg'
+        photoLink: 'img/3.jpg',
+        likes: ['Plaschinsky Ekler', 'Kitaev Ivan'],
+        hashtags : ['#BSU', '#FPMI', '#2123']
       },
 
       {
@@ -32,7 +38,9 @@ let photoPosts = [
         descriprion: 'Photos are different ...',
         createdAt: new Date('2018-12-15T16:30:00'),
         author: 'Elizaveta Novichenko',
-        photoLink: 'img/4.jpg'
+        photoLink: 'img/4.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -40,7 +48,9 @@ let photoPosts = [
         descriprion: 'Sometimes you just need to get to an unfamiliar city and look at everything from a different angle!',
         createdAt: new Date('2018-12-15T16:00:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/5.jpg'
+        photoLink: 'img/5.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -48,7 +58,9 @@ let photoPosts = [
         descriprion: 'Thought aloud, and more precisely on paper',
         createdAt: new Date('2018-11-11T11:30:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/6.jpg'
+        photoLink: 'img/6.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -56,7 +68,9 @@ let photoPosts = [
         descriprion: 'On the roofs of the city you can watch the changing scenery all day long',
         createdAt: new Date('2018-10-25T16:30:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/7.jpg'
+        photoLink: 'img/7.jpg',
+        likes: [],
+        hashtags : ['#BSU', '#FPMI']
       },
 
       {
@@ -64,7 +78,9 @@ let photoPosts = [
         descriprion: 'Like a light in the shower',
         createdAt: new Date('2018-10-25T12:12:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/8.jpg'
+        photoLink: 'img/8.jpg',
+        likes: ['Plaschinsky Egor', 'Ostrovskaya Alina'],
+        hashtags :[]
       },
 
       {
@@ -72,7 +88,9 @@ let photoPosts = [
         descriprion: 'Dacha, garden, nature and the best berries for me',
         createdAt: new Date('2018-09-21T16:30:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/9.jpg'
+        photoLink: 'img/9.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -80,7 +98,9 @@ let photoPosts = [
         descriprion: 'Soulful day cold evening!',
         createdAt: new Date('2018-09-11T11:30:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/10.jpg'
+        photoLink: 'img/10.jpg',
+        likes: ['Ostrovskaya Alina'],
+        hashtags :[]
       },
 
       {
@@ -88,7 +108,9 @@ let photoPosts = [
       descriprion: 'Good memory! I graduated from music school . Music is what I like !',
       createdAt: new Date('2019-02-21T16:30:00'),
       author: 'Romanova Julia',
-      photoLink: 'img/nature.jpg'
+      photoLink: 'img/nature.jpg',
+      likes: [],
+      hashtags :[]
      },
   
      {
@@ -96,7 +118,9 @@ let photoPosts = [
        descriprion: 'Nature is beautiful!',
        createdAt: new Date('2019-02-11T12:12:00'),
        author: 'Miriniv Misha',
-       photoLink: 'img/2.jpg'
+       photoLink: 'img/2.jpg',
+       likes: [],
+       hashtags :[]
      },
 
      {
@@ -104,7 +128,9 @@ let photoPosts = [
         descriprion: ' Gorgeous sunsets, beautiful countryside, the best people-that is what is sometimes missing...',
         createdAt: new Date('2019-01-10T17:30:00'),
         author: 'Alena Holubeva',
-        photoLink: 'img/3.jpg'
+        photoLink: 'img/3.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -112,7 +138,9 @@ let photoPosts = [
         descriprion: 'Photos are different ...',
         createdAt: new Date('2018-12-15T16:30:00'),
         author: 'Elizaveta Novichenko',
-        photoLink: 'img/4.jpg'
+        photoLink: 'img/4.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -120,7 +148,9 @@ let photoPosts = [
         descriprion: 'Sometimes you just need to get to an unfamiliar city and look at everything from a different angle!',
         createdAt: new Date('2018-12-15T16:00:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/5.jpg'
+        photoLink: 'img/5.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -128,7 +158,9 @@ let photoPosts = [
         descriprion: 'Thought aloud, and more precisely on paper',
         createdAt: new Date('2018-11-11T11:30:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/6.jpg'
+        photoLink: 'img/6.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -136,7 +168,9 @@ let photoPosts = [
         descriprion: 'On the roofs of the city you can watch the changing scenery all day long',
         createdAt: new Date('2018-10-25T16:30:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/7.jpg'
+        photoLink: 'img/7.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -144,7 +178,9 @@ let photoPosts = [
         descriprion: 'Like a light in the shower',
         createdAt: new Date('2018-10-25T12:12:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/8.jpg'
+        photoLink: 'img/8.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -152,7 +188,9 @@ let photoPosts = [
         descriprion: 'Dacha, garden, nature and the best berries for me',
         createdAt: new Date('2018-09-21T16:30:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/9.jpg'
+        photoLink: 'img/9.jpg',
+        likes: [],
+        hashtags :[]
       },
 
       {
@@ -160,19 +198,20 @@ let photoPosts = [
         descriprion: 'Soulful day cold evening!',
         createdAt: new Date('2018-09-11T11:30:00'),
         author: 'Romanova Julia',
-        photoLink: 'img/10.jpg'
+        photoLink: 'img/10.jpg',
+        likes: [],
+        hashtags :[]
       }
   
   ];
 
    photoPosts.map((v1)=> {
-    console.log(v1)//map помогает преобразовать массив  
+    console.log(v1)
   });
 
-  // Object - получить пост из массива photoPosts с определенным id.
+
   function getPhotoPost(getid)
   {
-    var sum = 0; // содержит сумму числовых значений массива
     for (var i=0, len=photoPosts.length; i<len; i++) {
         if ( photoPosts[i].id == getid ) {
             return photoPosts[i]; 
@@ -218,12 +257,16 @@ let photoPosts = [
       descriprion: 'Good memory! I graduated from music school . Music is what I like ! qwertyuiop[oiuytrewertyuioiuytrertyuioiuytrtyuiopoiu iuytiok dsfhgsdf sldf lsdufhs dfuhsdlufhlskfhdhflsdhflkdhs sdklfhsdlkfjhdlkfhsd',
       createdAt: new Date('2019-02-21T16:30:00'),
       author: 'Romanova Julia',
-      photoLink: 'img/nature.jpg'
+      photoLink: 'img/nature.jpg',
+      likes: [],
+      hashtags: ['#girl', '#cat']
      };
 
   console.log('Validate PhotoPosts[2] ' + validatePhotoPost(photoPosts[2]));
   console.log('Validate PhotoPost ' + validatePhotoPost(photoPost));
-
+  photoPosts.map((v1)=> {
+    console.log(v1)  
+  });
 
   function addPhotoPost(photoPost)
   {
@@ -257,13 +300,17 @@ let photoPosts = [
         {
           photoPosts[i].photoLink = photoPost.photoLink;
         }
+        if(photoPost.hashtags.length != 0)
+        {
+          photoPosts[i].hashtags = photoPost.hashtags;
+        }
         return true;
       }
     }
     return false;
   }
 
-  console.log("Edit PhotoPost " + editPhotoPost('1',  { descriprion: 'New post' }));
+  console.log("Edit PhotoPost " + editPhotoPost('1',  { hashtags: ['#one', '#two'] }));
 
   photoPosts.map((v1)=> {
     console.log(v1)  
@@ -282,10 +329,17 @@ let photoPosts = [
   } ;
 
   console.log('Remove PhotoPost with id = 2 : '+removePhotoPost('2'));
+
+  function contains(where, what){
+    for(var i=0; i<what.length; i++){
+        if(where.indexOf(what[i]) == -1) return false;
+    }
+    return true;
+};
   
-  // Array<Object>
   function getPhotoPosts(skip = 0, top = 10, filterConfig )
   {
+    let k = 0;
     let sortPhotoPosts = [];
     if (skip+top > photoPosts.length)
     {
@@ -298,11 +352,40 @@ let photoPosts = [
   
     if (filterConfig)
     {
+      
       for (var i=skip; i<allLen; i++) {
-        if (photoPosts[i].author == filterConfig.author)
+        let a;
+        let b;
+        if (filterConfig.likes)
         {
-          sortPhotoPosts.push(photoPosts[i]);
+         b =contains(photoPosts[i].likes, filterConfig.likes);
         }
+        else{
+          b = true;
+        }
+        if (filterConfig.hashtags)
+        {
+          a = contains(photoPosts[i].hashtags, filterConfig.hashtags);
+        }
+        else
+        {
+          a = true;
+        }
+        if(filterConfig.author!= null)
+          {
+            
+            if (photoPosts[i].author == filterConfig.author &&   (a == true) &&  (b == true))
+            {
+                sortPhotoPosts.push(photoPosts[i]);
+            }
+          }
+          else
+            {
+              if (( a == true) && (b == true))
+              {
+                sortPhotoPosts.push(photoPosts[i]);
+              }
+            } 
       }
     }
 
@@ -322,26 +405,20 @@ let photoPosts = [
   };
 
   
-
   getPhotoPosts(10, 10);
-  getPhotoPosts(10, 10,  {author: 'Romanova Julia'});
+
+  console.log ('filter -> hashtags: ["#BSU", "#FPMI"]');
+  getPhotoPosts(0, 10,  {hashtags: ['#BSU', '#FPMI']});
+
+  console.log ('filter -> hashtags: ["#BSU", "#FPMI"], author: "Alena Holubeva"');
+  getPhotoPosts(0, 10,  {hashtags: ['#BSU', '#FPMI'], author: 'Alena Holubeva'});
+
+  console.log ('filter -> likes: ["Ostrovskaya Alina"]');
+  getPhotoPosts(0, 10,  {likes: ['Ostrovskaya Alina']});
 
   return{
     getPhotoPost, validatePhotoPost, addPhotoPost, 
     editPhotoPost, removePhotoPost, getPhotoPosts
   }
 }();
-
-
-
-
-
-
-
-
-
-
-
-
-
 
