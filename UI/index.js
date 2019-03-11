@@ -226,27 +226,73 @@ let photoPosts = [
   function validatePhotoPost(photoPost)
   {
       for (var i=0, len=photoPosts.length; i<len; i++) {
-        if ( photoPosts[i].id == photoPost.id || photoPost.id ==null || typeof(photoPost.id)!='string') {
+        if (  typeof(photoPost.id)!='string') {
             return false; 
         }
-        else if (photoPost.descriprion.length>200 || photoPost.descriprion==null || typeof(photoPost.descriprion)!='string')
+        else if (photoPosts[i].id == photoPost.id || photoPost.id ==null )
         {
           return false;
         }
-        else if (photoPost.createdAt == null ||! photoPost.createdAt instanceof Date)
+        else if ( typeof(photoPost.descriprion)!='string')
         {
           return false;
         }
-        else if (photoPost.author == null || typeof(photoPost.descriprion)!='string')
+        else if (photoPost.descriprion.length>200 || photoPost.descriprion==null )
         {
           return false;
         }
-        else if (photoPost.photoLink == null || typeof(photoPost.photoLink)!='string')
+        else if (! photoPost.createdAt instanceof Date)
         {
           return false;
         }
-        
-        
+        else if (photoPost.createdAt == null )
+        {
+          return false;
+        }
+        else if ( typeof(photoPost.descriprion)!='string')
+        {
+          return false;
+        }
+        else if (photoPost.author == null )
+        {
+          return false;
+        }
+        else if ( typeof(photoPost.photoLink)!='string')
+        {
+          return false;
+        }
+        else if (photoPost.photoLink == null )
+        {
+          return false;
+        }
+        else if (photoPost.hashtags == undefined)
+        {
+          return false;
+        }
+        else 
+        {
+          for (let i = 0; i < photoPost.hashtags.length; i++)
+          {
+            if (typeof(photoPost.hashtags[i])!='string')
+            {
+              return false;
+            }
+          }
+        }
+         if (photoPost.likes == undefined)
+        {
+          return false;
+        }
+        else 
+        {
+          for (let i = 0; i < photoPost.likes.length; i++)
+          {
+            if (typeof(photoPost.likes[i])!='string')
+            {
+              return false;
+            }
+          }
+        }
     }
     return true;
   } ;
@@ -259,7 +305,7 @@ let photoPosts = [
       author: 'Romanova Julia',
       photoLink: 'img/nature.jpg',
       likes: [],
-      hashtags: ['#girl', '#cat']
+      hashtags: ['#girl','#cat']
      };
 
   console.log('Validate PhotoPosts[2] ' + validatePhotoPost(photoPosts[2]));
@@ -415,6 +461,9 @@ let photoPosts = [
 
   console.log ('filter -> likes: ["Ostrovskaya Alina"]');
   getPhotoPosts(0, 10,  {likes: ['Ostrovskaya Alina']});
+
+  console.log ('filter -> hashtags: ["#BSU"], author: "Romanova Julia"');
+  getPhotoPosts(0, 10,  {hashtags: ['#BSU'], author: 'Romanova Julia'});
 
   return{
     getPhotoPost, validatePhotoPost, addPhotoPost, 
