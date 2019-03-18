@@ -15,7 +15,7 @@ class PostModel {
     });
   }
 
-  addTransformation(post) {
+  _addTransformation(post) {
     this._photoPosts.push({
       _id: post.id,
       _descriprion : post.descriprion,
@@ -64,22 +64,15 @@ class PostModel {
     return false;
   };
 
-  static _isGoodAuthor (photoPost, filterAuthor){
-    if (photoPost.author == filterAuthor ) {
-      return true;
-    }
-    return false;
+  static _writePosts (Posts)
+  {
+    console.log('Filter : \n');
+    Posts.map((v1) => {
+      console.log(v1)
+    });
   }
 
-   static _isGoodHashtags (photoPost, filterHashTags = []){
-    if (filterHashTags.every( filterHashTag => 
-      photoPost._hashtags.some (postTag => postTag ===filterHashTag))){
-        return true;
-      }
-      return false;
-  }
-
-   getPhotoPosts(skip = 0, top = 10, filterConfig) {
+  getPhotoPosts(skip = 0, top = 10, filterConfig) {
     let sortPhotoPosts = [];
     let allLen = skip + top;
     if (skip + top > this._photoPosts.length) {
@@ -90,30 +83,28 @@ class PostModel {
         let isTag = true;
         let isAut = true;
         let isDate = true;
-        isTag = filterConfig.hashtags ? ((filterConfig.hashtags.every( filterHashTag => 
-          this._photoPosts[i]._hashtags.some (postTag => postTag ===filterHashTag)))? true:false) : true;
+        isTag = filterConfig.hashtags ? ((filterConfig.hashtags.every(filterHashTag =>
+          this._photoPosts[i]._hashtags.some(postTag => postTag === filterHashTag))) ? true : false) : true;
 
         isAut = filterConfig.author ?
-         ((this._photoPosts[i]._author === filterConfig.author) ? true : false) : true;
+          ((this._photoPosts[i]._author === filterConfig.author) ? true : false) : true;
 
-        if (isAut && isTag ){
+        isDate = filterConfig.createdAt ?
+          ((~this._photoPosts[i]._createdAt.toISOString().indexOf(filterConfig.createdAt)) ? true : false) : true;
+
+        if (isAut && isTag && isDate) {
           sortPhotoPosts.push(this._photoPosts[i]);
         }
       }
     }
-
     else {
       for (var i = skip; i < allLen; i++) {
         sortPhotoPosts.push(this._photoPosts[i]);
       }
     }
-    sortPhotoPosts.sort(function (PhotoPost1, PhotoPost2) 
-    { return PhotoPost1._createdAt - PhotoPost2._createdAt });
-
-    console.log('Filter : \n');
-    sortPhotoPosts.map((v1) => {
-      console.log(v1)
-    });
+    sortPhotoPosts.sort(function (PhotoPost1, PhotoPost2) { return PhotoPost1._createdAt - PhotoPost2._createdAt });
+    PostModel._writePosts(sortPhotoPosts);
+    
     return sortPhotoPosts;
   };
 
@@ -208,7 +199,7 @@ class PostModel {
 
    addPhotoPost(photoPost) {
     if (PostModel.validatePhotoPost(photoPost)) {
-      this.addTransformation(photoPost);
+      this._addTransformation(photoPost);
       return true;
     }
     return false; 
@@ -222,7 +213,7 @@ class PostModel {
           notValidate.push(post);
         }
         else if (PostModel.validatePhotoPost (post)) {
-          this.addTransformation(post);
+          this._addTransformation(post);
         }
         else
         {
@@ -520,4 +511,7 @@ notValid.forEach(elem =>
 
    console.log('filter -> hashtags: ["#BSU"], author: "Romanova Julia"');
    Posts.getPhotoPosts(0, 10, { hashtags: ['#BSU'], author: 'Romanova Julia' });
+
+   console.log('filter -> createdAt:  "2019-02-21"');
+   Posts.getPhotoPosts(0,10, {createdAt : '2019-02-21'} );
 
