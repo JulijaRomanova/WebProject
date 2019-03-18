@@ -62,7 +62,7 @@ class PostModel {
       }
     }
     return false;
-  };
+  }
 
   static _writePosts (Posts)
   {
@@ -98,15 +98,15 @@ class PostModel {
       }
     }
     else {
-      for (var i = skip; i < allLen; i++) {
-        sortPhotoPosts.push(this._photoPosts[i]);
+      for (var m = skip; m < allLen; m++) {
+        sortPhotoPosts.push(this._photoPosts[m]);
       }
     }
     sortPhotoPosts.sort(function (PhotoPost1, PhotoPost2) { return PhotoPost1._createdAt - PhotoPost2._createdAt });
     PostModel._writePosts(sortPhotoPosts);
     
     return sortPhotoPosts;
-  };
+  }
 
   
   static _validateId(photoPost) {
@@ -128,7 +128,7 @@ class PostModel {
   }
 
   static _validateCreatedAt(photoPost){
-    if (!photoPost.createdAt instanceof Date) {
+    if (!(photoPost.createdAt instanceof Date)) {
       return false;
     }
     if (photoPost.createdAt == null) {
@@ -195,7 +195,7 @@ class PostModel {
       & PostModel._validateHashtags (post)
       & PostModel._validateLikes(post);
     }
-  };
+  }
 
    addPhotoPost(photoPost) {
     if (PostModel.validatePhotoPost(photoPost)) {
@@ -229,7 +229,7 @@ class PostModel {
     });
   }
 
-};
+}
 
 
 let photoPosts = [
