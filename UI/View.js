@@ -56,7 +56,8 @@ class View
   clearPosts ()
   {
     let posts = document.getElementById("photoPosts");
-    posts.parentNode.removeChild(posts);
+    posts.innerHTML = '';
+    //posts.parentNode.removeChild(posts);
 
   }
   _removePost(id = 0) 
