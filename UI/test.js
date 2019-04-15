@@ -225,39 +225,21 @@ let photoPosts = [
   let filterConfig =
   {
     hashtags: [],
-    createdAt: new Date ('1018-09-11T11:30:00'),
-    author: 'Miriniv Misha',
+    createdAt: new Date (''),
+    author: '',
   }
-
-
+ 
   const Posts = new PostModel(photoPosts);
- // Posts.getPhotoPosts(2,5);
 
   let user = new User('Julia Romanova');
   let ViewPhoto = new View ();
-  ViewPhoto.showPosts(Posts.getAllPosts());
+  ViewPhoto.showPosts(Posts.getAllPosts(), user.isUserName());
   addPost(Post1, ViewPhoto);
   removePost(ViewPhoto, '1');
   editPost('3', ViewPhoto, newPost);
   isActiveUser(user, ViewPhoto);
-  ViewPhoto.clearPosts();
-  ViewPhoto.showPosts(Posts.getPhotoPosts(0,9, filterConfig));
+  filterPosts(ViewPhoto, filterConfig);
 
-  //filterPosts(ViewPhoto, filterConfig);
- // filter(ViewPhoto, filterConfig);
- 
-  //Posts.getPhotoPosts();
-  //ViewPhoto.filterUser(Posts.getDates());
-  //ViewPhoto.filterUser(Posts.getAuthor(), Posts.getPhotoPosts());
-
- // console.log("write posts!!!");
-  //Posts.writePosts();
-  
-
-
-//   ViewPhoto.showPost( Posts.getPhotoPost('5'));
-//   ViewPhoto.showPost( Posts.getPhotoPost('1'));
-//   ViewPhoto.showPosts(Posts.getPhotoPosts(0,5));
 function addPost(post, viewer) {
 
 	if (!Posts.addPhotoPost(post)) {
@@ -286,11 +268,11 @@ function isActiveUser(user, viewer)
 
   if (user.isUserName())
   {
-    viewer._activeUser(user)
+    viewer._activeUserHeader(user)
   }
   else
   {
-    viewer._noActiveUser(user);
+    viewer._noActiveUserHeader(user);
   }
 }
 
@@ -298,7 +280,7 @@ function isActiveUser(user, viewer)
 function filterPosts(viewer, filterConfig)
 {
   viewer.clearPosts();
-  viewer.showPosts(Posts.getPhotoPosts(0,9, filterConfig));
+  viewer.showPosts(Posts.getPhotoPosts(0,10, filterConfig));
 }
 
 function filter(viewer, filterConfig)
@@ -326,7 +308,7 @@ function filterClickEvent(event)
   }
 } 
 
-function showVariants(event) {
+function showVariantsHashTags(event) {
   if (event.target.id === 'Hashtags') {
     let hashtags = document.getElementById("childTags");
     let allTags = Posts.getHashTags();
@@ -336,5 +318,26 @@ function showVariants(event) {
   }
 }
 
+function showVariantsAuthors(event) {
+  if (event.target.id === 'user') {
+    let authors = document.getElementById("childUsers");
+    let allAuthor = Posts.getAuthor();
+    authors.innerHTML =`<p>${allAuthor}</p>
+    `; 
+    authors.style.display = (authors.style.display === 'none') ? 'block': 'none';
+  }
+}
+
+function showVariantsDates(event) {
+  if (event.target.id === 'date') {
+    let dates = document.getElementById("childDates");
+    let allDates = Posts.getDates();
+    dates.innerHTML =`<p>${allDates.join('; ')}</p>
+    `; 
+    dates.style.display = (dates.style.display === 'none') ? 'block': 'none';
+  }
+}
 document.body.addEventListener('click', filterClickEvent);
-document.body.addEventListener('click', showVariants);
+document.body.addEventListener('click', showVariantsHashTags);
+document.body.addEventListener('click', showVariantsAuthors);
+document.body.addEventListener('click', showVariantsDates);

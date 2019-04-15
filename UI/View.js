@@ -12,24 +12,24 @@ class View
           <h2 >${post._author}<br>
               <i class="date">${(post._createdAt)}</i>
           </h2>
-          <div class = "decription" style = "display: flex">
+          <div class = "buttonPosts" style = "display: flex">
               <button class = "post-button">   
-                  <img src="img/like.png" >
+                  <img src="img/like.png" alt = 'like'>
               </button>
               <button class = "post-button" >
-                  <img src="img/kar.png" >
+                  <img src="img/kar.png" alt = 'edit'>
               </button>
               <button class = "post-button" >
-                  <img src="img/ftcheckmark.png" >
+                  <img src="img/ftcheckmark.png" alt = 'delete'>
               </button>
             
            </div>
-          <h3 class = "decription1">
+          <div class = "description">
               <span>${post._descriprion}</span>
-              <div class = "decription2">
+              <div class = "tags">
                    ${post._hashtags.join(',')}
               </div>
-          </h3>
+          </div>
     </div>`;
 
     posts.appendChild(photo);
@@ -56,7 +56,7 @@ class View
   clearPosts ()
   {
     let posts = document.getElementById("photoPosts");
-    posts.innerHTML = '';
+    posts.innerHTML = ``;
     //posts.parentNode.removeChild(posts);
 
   }
@@ -70,70 +70,31 @@ class View
   {
     let oldPost = document.getElementById(id);
     oldPost.firstElementChild.setAttribute('src', newPost._photoLink);
-    oldPost.querySelector('.decription1 span').textContent = newPost._descriprion;
-    oldPost.querySelector('.decription1 .decription2').textContent = newPost._hashtags.join(','); 
+    oldPost.querySelector('.description span').textContent = newPost._descriprion;
+    oldPost.querySelector('.description .tags').textContent = newPost._hashtags.join(','); 
   }
 
-  _activeUser(user)
+  _activeUserHeader(user)
   {
     let headerActive = document.getElementById('titel');
     headerActive.innerHTML =`
-    <h1> Insta <img src="img/leaves.jpg" width="50" height="40""> Life    
-      <button class = " butt1"> Log out </button>
-      <button class="butt2">
-        <img src="img/photopost1.jpg" class="photo1">
+    <span class = "merch"> Insta <img src="img/leaves.jpg"class = "merch" alt = "merch"> Life    
+      <button class = " btnLogOut"> Log out </button>
+      <button class="btnAddPost">
+        <img src="img/photopost1.jpg" class="photo1" alt = "photoPost">
       </button>
-    </h1>
+    </span>
     <div class="username">${user.getUserName()}</div>`;
   }
 
-  _noActiveUser (user)
+  _noActiveUserHeader (user)
   {
     let headerNoActive = document.getElementById('titel');
     headerNoActive.innerHTML =`
-    <h1> Insta <img src="img/leaves.jpg" width="50" height="40""> Life    
-      <button class = " butt1"> Sign in </button>
-      <button class="butt2"> Log in </button>
+    <h1> Insta <img src="img/leaves.jpg" class = "merch" alt = "Merch"> Life    
+      <button class = " btnLogOut"> Sign in </button>
+      <button class="btnAddPost"> Log in </button>
     </h1>
     <div class="username">${user._name}</div>`;
   }
-
-  static _showAllAuthors(allUsers)
-  {
-    let lebel1 = document.getElementById('user');
-    let allUs = document.getElementById("childUsers");
-    function lebel1Click()
-    {
-      allUs.style.display = (allUs.style.display == 'none')? 'block': 'none';
-
-    }
-    lebel1.addEventListener('click', lebel1Click);
-    allUs.innerHTML =`<p>${allUsers.join(';  ')}</p>
-    `;
-  }
-
-  static _showAllDates(allDates)
-  {
-    let lebel2 = document.getElementById('date');
-    let allD = document.getElementById("childDates");
-    function lebel2Click()
-    {
-      allD.style.display = (allD.style.display == 'none')? 'block': 'none';
-
-    }
-    lebel2.addEventListener('click', lebel2Click);
-    allD.innerHTML =`<p>${allDates.join(';  ')}</p>
-    `;
-  }
-
-  filterUser(allUsers, allDates, allTags)
-  {
-    View._showAllAuthors(allUsers);
-    View._showAllDates(allDates);
-    View._showAllTags(allTags);
-    
-  
-  }
-
-  
 }

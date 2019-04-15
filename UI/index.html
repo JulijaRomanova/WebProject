@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <link href="styles.css" rel="stylesheet" type="text/css"
-        style=" background: #1728 url(bg.jpg) no-repeat 100% 100%;">
-        <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" 
+    <title>Insta Life</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" 
         integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" 
         crossorigin="anonymous"></script>
-        <meta charset="UTF-8">
+    <meta name="viewport" charset="UTF-8"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="styles.css" rel="stylesheet" type="text/css">
 
 </head>
 
-<body class="fon">
+<body class="backgroundSite">
     <header class="back-gr">
         <div id = "titel">
-          
-        </div>
-        
+        </div>   
     </header>
 
     <main>
@@ -34,9 +33,9 @@
                 <div class="search-label">Hashtags</div>
                 <input type="text" id="Hashtags" class = "inputs" placeholder = "Input Hashtag" autocomplete="off"/>
             </label>
-            <label>
-                <button id = "filter" class = "butt4">filter</button>
-            </label>
+            
+            <button id = "filter" class = "btnFilter">filter</button>
+            
             <div class ="childUsers" id = "childUsers"></div>
             <div class = "childDates" id = "childDates"></div>
             <div class = "childTags" id = "childTags"></div>
@@ -45,33 +44,26 @@
 
         <div id="photoPosts" ></div> 
         
-        <button class="butt3">
-            <tr>
-                <td><em>Download more</em></td>
-            </tr>
-        </button>
+        <button class="btnMorePosts"> Download more  </button>
         
     </main>
 
     <footer>
-
         <div class="parant">
             <div class="child">
-                <h3 class="m"> 04.03.2019 </h3>
+                <h3 class="logo"> 04.03.2019 </h3>
             </div>
             <div class="child">
-                <h1>
-
-                    Insta <img src="img/leaves.jpg" width="50" height="40"> Life
-                </h1>
+                <span class = "merch" role="presentation">
+                    Insta <img src="img/leaves.jpg" class = "merch " alt = "Merch"> Life
+                </span>
             </div>
             <div class="child">
 
-                <h3 class="m">
+                <h3 class="logo">
                     <div>Romanova Julia</div>
                     <div>2 course 6 group</div>
                     <div>youliaromanova99@mail.ru</div>
-
                 </h3>
             </div>
 

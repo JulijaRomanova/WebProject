@@ -6,13 +6,17 @@ main
 {
   min-height: 100%;
 }
-h1
+
+.merch
 {
-    font-family: "Tahoma", serif;
-    color: #000060; 
-    font-weight: bold;
-    margin-left: 4%;
-    
+  margin-top: 2%;
+  width: 50px;
+  height: 40px;
+  font-family: "Tahoma", serif;
+  font-size: 30px;
+  color: #000060; 
+  font-weight: bold;
+  margin-left: 2%;
 }
 header
 {
@@ -23,12 +27,12 @@ header
     background: url(img/fon1.jpg);
     width: 100%;
 }
-.fon
+.backgroundSite
 {
     background: url(img/fon.jpg) ;
 }
 
-.butt1
+.btnLogOut
 {
     border-radius:10%;
     position: fixed ;
@@ -40,9 +44,10 @@ header
     font-family: SEGOE PRINT;
     position: fixed;
     overflow: hidden;
+    margin-top: 2%;
     
 }
-.butt2
+.btnAddPost
 {
     border-radius:10%;
     position: fixed ;
@@ -53,10 +58,11 @@ header
     height:  8%;
     font-size: 70%;
     font-family: SEGOE PRINT;
+    margin-top: 2%;
    
     
 }
-.butt3
+.btnMorePosts
 {
 
     background: #a086e7;
@@ -67,7 +73,7 @@ header
     margin-top: 1.5%;
     
 }
-.butt4
+.btnFilter
 {
     background: #a086e7;
     color: #edf1f1 ;
@@ -123,7 +129,7 @@ header
     font-family: "SEGOE PRINT", sans-serif;
     font-size: .7em;
   }
-  .decription{
+  .buttonPosts{
     position:absolute; 
     right: 8%;
     border:3px #000060 double; 
@@ -139,7 +145,7 @@ header
   element.style {
     display: flex;
 }
-.decription .post-button img
+.buttonPosts .post-button img
 {
   width: 100%;
   position: absolute;
@@ -148,7 +154,7 @@ header
   background:  hsla(307, 29%, 56%, 0.7);
   display: block;
 }
-.decription .post-button
+.buttonPosts .post-button
 {
   width: 31px;
   height: 31px;
@@ -156,7 +162,7 @@ header
   background: hsla(307, 29%, 56%, 0.7);  
   margin-right: 2px;
 }
-.decription {
+.buttonPosts {
     display: flex;
     justify-content: left;
     position: absolute;
@@ -174,7 +180,7 @@ div {
     display: block;
 }
 
-  .decription1{
+  .description{
     position:absolute; right: 8%; border:3px #000060 double; width:31%;
     box-shadow:3px 3px 5px #999;
     top: 38px;
@@ -182,9 +188,10 @@ div {
     font-family: "SEGOE PRINT", sans-serif;
     padding: 1%;
     background: hsla(309, 33%, 73%, 0.7);
+    display: block;
   }
 
- .decription2
+ .tags
   {
     position:absolute;right: -0.5%;  border:3px #000060 double ;width:98%;
     top:102%;
@@ -211,7 +218,7 @@ div {
     width: 29%;
 
 }
-.m 
+.logo
 {
     font-family: "Tahoma", serif;
     color: #000060; 

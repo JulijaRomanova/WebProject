@@ -97,20 +97,21 @@ class PostModel {
       if (skip + top > this._photoPosts.length) {
         allLen = this._photoPosts.length;
       }
-      if (filterConfig.hashtags.length !== 0 || filterConfig.author !== "" ) {
+      if (filterConfig.hashtags.length !== 0 || filterConfig.author !== "" || filterConfig.createdAt != 'Invalid Date') {
         filterPhotoPosts = this._photoPosts.filter((post) => {
           let isTag = true;
           let isAut = true;
           let isDate = true;
-          if (filterConfig.hashtags && filterConfig.hashtags.length != 0) {
+          if ( filterConfig.hashtags.length != 0) {
             isTag = filterConfig.hashtags.every(function (filterHashTag) {
               return (post._hashtags.some(postTag => postTag === filterHashTag));
             });
           }
-          isAut = !filterConfig.author|| filterConfig.author == null || (post._author === filterConfig.author);
-  
           
-          //isDate = !filterConfig.createdAt || post._createdAt.toString().indexOf(filterConfig.createdAt);
+          isAut = filterConfig.author==""|| filterConfig.author == null || (post._author === filterConfig.author);
+  
+          let newDate = new Date(post._createdAt);
+          isDate = filterConfig.createdAt == 'Invalid Date'|| newDate.toISOString().substr(0,10) == (filterConfig.createdAt.toISOString().substr(0,10));
   
           filterPhotoPosts = filterPhotoPosts.slice(skip, allLen);
           return isAut && isTag && isDate;
@@ -118,16 +119,13 @@ class PostModel {
       }
       else
       {
-        //console.log("Test!"+this._photoPosts[5]._createdAt.toISOString());
         filterPhotoPosts = this._photoPosts.slice(skip, allLen);
       }
    
       if(filterPhotoPosts.length !=0)
-      filterPhotoPosts.sort(function (PhotoPost1, PhotoPost2) { return PhotoPost2._createdAt 
-          - PhotoPost1._createdAt });
+      filterPhotoPosts.sort(function (PhotoPost1, PhotoPost2) { return new Date (PhotoPost2._createdAt)
+          - new Date (PhotoPost1._createdAt) });
 
-      //PostModel._debug(filterPhotoPosts);
-      
       return filterPhotoPosts;
     }
 
