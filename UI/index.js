@@ -439,50 +439,50 @@ let photoPosts = [
 let Posts = new PostModel(photoPosts);
 Posts.writePosts();
 
-let getPost = Posts.getPhotoPost('5');
-console.log ("getPost 5 ");
-console.log (getPost);
+// let getPost = Posts.getPhotoPost('5');
+// console.log ("getPost 5 ");
+// console.log (getPost);
 
-Posts.editPhotoPost('1', { hashtags: ['#one', '#two'] });
-console.log("Edit PhotoPost with id = 1: ");
-Posts.writePosts();
+// Posts.editPhotoPost('1', { hashtags: ['#one', '#two'] });
+// console.log("Edit PhotoPost with id = 1: ");
+// Posts.writePosts();
 
-console.log('Remove PhotoPost with id = 2 : '+ Posts.removePhotoPost('2'));
-Posts.writePosts();
+// console.log('Remove PhotoPost with id = 2 : '+ Posts.removePhotoPost('2'));
+// Posts.writePosts();
 
-console.log('Remove PhotoPost with id = 111 : '+ Posts.removePhotoPost('111'));
+// console.log('Remove PhotoPost with id = 111 : '+ Posts.removePhotoPost('111'));
 
-let Post2 = [
-  {
-    id: '3',
-    descriprion: 'Soulful day cold evening!',
-    createdAt: new Date('2018-09-11T11:30:00'),
-    author: 'Romanova Julia',
-    photoLink: 'img/10.jpg',
-    likes: [],
-    hashtags: []
-  }, 
+// let Post2 = [
+//   {
+//     id: '3',
+//     descriprion: 'Soulful day cold evening!',
+//     createdAt: new Date('2018-09-11T11:30:00'),
+//     author: 'Romanova Julia',
+//     photoLink: 'img/10.jpg',
+//     likes: [],
+//     hashtags: []
+//   }, 
 
-  {
-    id: '111',
-    descriprion: 'Soulful day cold evening!',
-    createdAt: new Date('2018-09-12T11:30:00'),
-    author: 'Romanova Julia',
-    photoLink: 'img/10.jpg',
-    likes: [],
-    hashtags: []
-  }
-];
-let notValid = Posts.addAll(Post2);
+//   {
+//     id: '111',
+//     descriprion: 'Soulful day cold evening!',
+//     createdAt: new Date('2018-09-12T11:30:00'),
+//     author: 'Romanova Julia',
+//     photoLink: 'img/10.jpg',
+//     likes: [],
+//     hashtags: []
+//   }
+// ];
+// let notValid = Posts.addAll(Post2);
 
-console.log ("AddAll, Notvalidate element: ");
-notValid.forEach(elem =>
-  {
-    console.log(elem);
-  });
+// console.log ("AddAll, Notvalidate element: ");
+// notValid.forEach(elem =>
+//   {
+//     console.log(elem);
+//   });
 
-  console.log ("AddAll, Change Posts ");
-  Posts.writePosts()
+//   console.log ("AddAll, Change Posts ");
+//   Posts.writePosts()
 
   let Post1 = 
     {
@@ -495,23 +495,97 @@ notValid.forEach(elem =>
       hashtags: []
     }; 
 
-    Posts.addPhotoPost(Post1);
-    console.log ("addPhotoPost Post1 with id = 21");
-    Posts.writePosts();
+//     Posts.addPhotoPost(Post1);
+//     console.log ("addPhotoPost Post1 with id = 21");
+//     Posts.writePosts();
 
-    console.log ("add Post with id = 7 " + Posts.addPhotoPost(Posts.getPhotoPost('7')));
+//     console.log ("add Post with id = 7 " + Posts.addPhotoPost(Posts.getPhotoPost('7')));
 
-  Posts.getPhotoPosts(15, 10);
+//   Posts.getPhotoPosts(15, 10);
 
-   console.log('filter -> hashtags: ["#BSU", "#FPMI"]');
-   Posts.getPhotoPosts(0, 10, { hashtags: ['#BSU', '#FPMI'] });
+//    console.log('filter -> hashtags: ["#BSU", "#FPMI"]');
+//    Posts.getPhotoPosts(0, 10, { hashtags: ['#BSU', '#FPMI'] });
 
-   console.log('filter -> hashtags: ["#BSU", "#FPMI"], author: "Alena Holubeva"');
-   Posts.getPhotoPosts(0, 10, { hashtags: ['#BSU', '#FPMI'], author: 'Alena Holubeva' });
+//    console.log('filter -> hashtags: ["#BSU", "#FPMI"], author: "Alena Holubeva"');
+//    Posts.getPhotoPosts(0, 10, { hashtags: ['#BSU', '#FPMI'], author: 'Alena Holubeva' });
 
-   console.log('filter -> hashtags: ["#BSU"], author: "Romanova Julia"');
-   Posts.getPhotoPosts(0, 10, { hashtags: ['#BSU'], author: 'Romanova Julia' });
+//    console.log('filter -> hashtags: ["#BSU"], author: "Romanova Julia"');
+//    Posts.getPhotoPosts(0, 10, { hashtags: ['#BSU'], author: 'Romanova Julia' });
 
-   console.log('filter -> createdAt:  "2019-02-21"');
-   Posts.getPhotoPosts(0,10, {createdAt : '2019-02-21'} );
+//    console.log('filter -> createdAt:  "2019-02-21"');
+//    Posts.getPhotoPosts(0,10, {createdAt : '2019-02-21'} );
 
+  class View
+  {
+    static _transformationDate(date) {
+      let dateСomponents = {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      };
+      let timeСomponents = {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: false
+      };
+      return (date.toLocaleDateString('en-US', dateСomponents) + ' ' + date.toLocaleTimeString('en-US', timeСomponents));
+    }
+    addViewPost (post, posts)
+    {
+      let photo = document.createElement('div');
+      photo.classList.add('photoPosts');
+      photo._id = post._id;
+      photo.innerHTML = `
+      <div class="userphotopost">
+            <img src=${post._photoLink}  alt = 'Invalid photo'>
+            <h2>${post._author}<br>
+                <i class="date">${View._transformationDate(post._createdAt)}</i>
+            </h2>
+            <h3 class = "decription">
+                <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
+                        <tr>
+                                <td>
+                                    <img src="img/like.png" >
+                                </td>
+                            </tr>
+                    <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
+                        <tr>
+                            <td>
+                                    <img src="img/kar.png" >
+                                
+                            </td>
+                        </tr>
+                        <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
+                                <tr>
+                                    <td>
+                                            <img src="img/ftcheckmark.png" >
+                                    </td>
+                                </tr>
+                            </button> 
+                    </button> 
+                </button>
+              
+             </h3>
+            <h3 class = "decription1">
+                ${post._descriprion}
+                <div class = "decription2">
+                     ${post._hashtags}
+                </div>
+            </h3>
+      </div>`;
+      
+      posts.appendChild(photo);
+      
+    }
+
+    showPost (post)
+    {
+      let photos = document.getElementById('photoPosts');
+      this.addViewPost(post, photos);
+    }
+    
+  }
+  let ViewPhoto = new View ();
+  ViewPhoto.showPost( Posts.getPhotoPost('5'));
+
+  

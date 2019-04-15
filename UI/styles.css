@@ -1,3 +1,11 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+main
+{
+  min-height: 100%;
+}
 h1
 {
     font-family: "Tahoma", serif;
@@ -27,11 +35,11 @@ header
     left: 90%;
     background: #a086e7;
     color: #edf1f1 ;
-    width: 9%;
     height:  8%;
-    font-size: 50%;
+    font-size: 15px;
     font-family: SEGOE PRINT;
     position: fixed;
+    overflow: hidden;
     
 }
 .butt2
@@ -41,7 +49,7 @@ header
     left: 79%;
     background: #a086e7;
     color: #edf1f1 ;
-    width: 9%;
+    width: 90px;
     height:  8%;
     font-size: 70%;
     font-family: SEGOE PRINT;
@@ -56,20 +64,19 @@ header
     width: 100%;
     height:  10%;
     font-family: SEGOE PRINT;
+    margin-top: 1.5%;
     
 }
 .butt4
 {
-    
-    width: 3%;
-    height:  3%;
-    border-color: #000060;
-    margin-left: 70%;
-        
+    background: #a086e7;
+    color: #edf1f1 ;
+    font-family: SEGOE PRINT;
+    border-radius: 5px;  
 }
 .photo1
 {
-    width: 50%;
+    width: 50px;
     height: 90%;
 }
 .photo2
@@ -82,12 +89,13 @@ header
     font-family: "SEGOE PRINT", serif;
     margin-left: 4%;
     color: #000060; 
-    
+    font-size: 150%;
 }
+
+
 .userphotopost {
     width: auto;
     height: auto;
-
     padding-left: 15%;
     margin: 7% auto 0;
     position: relative;
@@ -116,7 +124,10 @@ header
     font-size: .7em;
   }
   .decription{
-    position:absolute; right: 8%; border:3px #000060 double; width:33%;
+    position:absolute; 
+    right: 8%;
+    border:3px #000060 double; 
+    width:33%;
     box-shadow:3px 3px 5px #999;
     top: 0%;
     margin: 0;
@@ -124,6 +135,44 @@ header
    
     background: hsla(307, 29%, 56%, 0.7);
   }
+  
+  element.style {
+    display: flex;
+}
+.decription .post-button img
+{
+  width: 100%;
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  background:  hsla(307, 29%, 56%, 0.7);
+  display: block;
+}
+.decription .post-button
+{
+  width: 31px;
+  height: 31px;
+  position: relative;
+  background: hsla(307, 29%, 56%, 0.7);  
+  margin-right: 2px;
+}
+.decription {
+    display: flex;
+    justify-content: left;
+    position: absolute;
+    right: 8%;
+    border: 3px #000060 double;
+    width: 33%;
+    box-shadow: 3px 3px 5px #999;
+    top: 0%;
+    margin: 0;
+    font-family: "SEGOE PRINT", sans-serif;
+    background: hsla(307, 29%, 56%, 0.7);
+}
+
+div {
+    display: block;
+}
 
   .decription1{
     position:absolute; right: 8%; border:3px #000060 double; width:31%;
@@ -168,4 +217,78 @@ header
     color: #000060; 
     font-weight: bold;
     margin-left: 4%;
+}
+.childUsers{
+  position: relative;
+}
+.childUsers
+{
+  position: absolute;
+  left: 85px;
+  font-family: "SEGOE PRINT";
+  font-size: 12px;
+  background: hsla(309, 33%, 73%, 0.7);
+  max-width: 170px;
+  z-index: 1000;
+  border-radius: 10px; 
+  display: none;
+}
+.childDates
+{
+  position: absolute;
+  left: 300px;
+  font-family: "SEGOE PRINT";
+  font-size: 12px;
+  background: hsla(309, 33%, 73%, 0.7);
+  max-width: 155px;
+  z-index: 1000;
+  border-radius: 10px; 
+  display: none;
+}
+
+.childTags
+{
+  position: absolute;
+  left: 550px;
+  font-family: "SEGOE PRINT";
+  font-size: 12px;
+  background: hsla(309, 33%, 73%, 0.7);
+  max-width: 170px;
+  z-index: 1000;
+  border-radius: 10px; 
+  display: none;
+}
+.inputs
+{
+  background: hsla(251, 78%, 95%, 0.7);
+  font-family: "SEGOE PRINT";
+  
+}
+
+#user, #date, #Hashtags {
+  outline: none;
+  border: 1px solid #a086e7;
+}
+
+#user:focus, #date:focus, #Hashtags:focus {
+  box-shadow: 2px 0px 7px #a086e7;
+}
+
+#search label {
+  color: #372469;
+  font-family: "SEGOE PRINT";
+}
+
+.search-label {
+  display: inline;
+}
+
+button {
+  border: none;
+  outline: none;
+  border: 1px solid white;
+}
+
+button:hover {
+  box-shadow: 2px 4px 7px #372469
 }
