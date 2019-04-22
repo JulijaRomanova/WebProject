@@ -38,7 +38,7 @@ let photoPosts = [
       author: 'Elizaveta Novichenko',
       photoLink: 'img/4.jpg',
       likes: [],
-      hashtags: []
+      hashtags: ['#like']
     },
   
     {
@@ -70,7 +70,7 @@ let photoPosts = [
       likes: [],
       hashtags: ['#BSU', '#FPMI']
     },
-  
+
     {
       id: '8',
       descriprion: 'Like a light in the shower',
@@ -108,7 +108,7 @@ let photoPosts = [
       author: 'Romanova Julia',
       photoLink: 'img/nature.jpg',
       likes: [],
-      hashtags: []
+      hashtags: ['#memory']
     },
   
     {
@@ -224,34 +224,46 @@ let photoPosts = [
 
   let filterConfig =
   {
-    hashtags: [],
+    hashtags: ['#like'],
     createdAt: new Date (''),
     author: '',
   }
  
+  let skip1 = 0;
+  let top1 = 10;
   const Posts = new PostModel(photoPosts);
 
   let user = new User('Julia Romanova');
   let ViewPhoto = new View ();
-  ViewPhoto.showPosts(Posts.getAllPosts(), user.isUserName());
+  ViewPhoto.setAuthorized(user);
+
+  downLoadMore( ViewPhoto);
   addPost(Post1, ViewPhoto);
-  removePost(ViewPhoto, '1');
+  downLoadMore(ViewPhoto);
+  removePost(ViewPhoto, '10');
   editPost('3', ViewPhoto, newPost);
-  isActiveUser(user, ViewPhoto);
+
+  downLoadMore( ViewPhoto);
   filterPosts(ViewPhoto, filterConfig);
 
+  
 function addPost(post, viewer) {
 
 	if (!Posts.addPhotoPost(post)) {
 		return false;   
     }
-	viewer._showPost(Posts.getPhotoPost(post.id));
+    if(Posts.getLenghtPosts() <= 10)
+    {
+      viewer._showPost(Posts.getPhotoPost(post.id));
+    }
 	return true;
 }
 function removePost( viewer, id) {
 	if (!Posts.removePhotoPost(id)) {
 		return false;
     }
+    skip1-=1;
+    top1-=1;
     viewer._removePost(id);
 	return true;
 }
@@ -263,19 +275,18 @@ function editPost (id, viewer, newPost)
     }
     viewer._editPost(id, Posts.getPhotoPost(id));
 }
-function isActiveUser(user, viewer)
+
+function downLoadMore ( viewer)
 {
-
-  if (user.isUserName())
+ 
+  let morePosts = Posts.getDownMore(skip1,top1);
+  if(morePosts.length!=0)
   {
-    viewer._activeUserHeader(user)
+    viewer.showPosts(Posts.getDownMore(skip1, top1));
   }
-  else
-  {
-    viewer._noActiveUserHeader(user);
-  }
+  skip1+=10;
+  top1+=10;
 }
-
 
 function filterPosts(viewer, filterConfig)
 {
@@ -283,22 +294,15 @@ function filterPosts(viewer, filterConfig)
   viewer.showPosts(Posts.getPhotoPosts(0,10, filterConfig));
 }
 
-function filter(viewer, filterConfig)
-{
-  //Posts.getPhotoPosts;
-
-  viewer.filterUser(Posts.getAuthor(), Posts.getDates(), Posts.getHashTags());
-  let button = document.getElementById("filter");
-}
-
 const viewer = new View();
 
 function filterClickEvent(event)
 {
   let allPosts = document.getElementById("photoPosts");  
-  console.log("here!");
+  
   if (event.target.id === "filter")
   {
+    console.log("here!");
     filterConfig.author = document.getElementById('user').value;
     filterConfig.createdAt = document.getElementById('date').value;
     filterConfig.hashtags.push(document.getElementById('Hashtags').value); 
@@ -337,7 +341,35 @@ function showVariantsDates(event) {
     dates.style.display = (dates.style.display === 'none') ? 'block': 'none';
   }
 }
-document.body.addEventListener('click', filterClickEvent);
+
+const head = document.querySelector('main');
+head.addEventListener('click', filterClickEvent);
 document.body.addEventListener('click', showVariantsHashTags);
 document.body.addEventListener('click', showVariantsAuthors);
 document.body.addEventListener('click', showVariantsDates);
+
+/*
+const postsContaier = document.querySelector('main');
+postsContaier.addEventListener('click', (event) => {
+  const target = event.target.closest('[data-action]');
+  const post = target.closest('userphotopost');
+  const postId = post.id;
+
+  let prevent = false;
+  switch (target.dataset.action) {
+    case 'like':
+      doLike(postId);
+      prevent = true;
+      break;
+    case 'edit':
+      doEdit(postId);
+      prevent = true;
+      break;
+  }
+
+  if (prevent) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+});
+*/

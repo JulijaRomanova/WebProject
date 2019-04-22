@@ -121,12 +121,20 @@ class PostModel {
       {
         filterPhotoPosts = this._photoPosts.slice(skip, allLen);
       }
-   
       if(filterPhotoPosts.length !=0)
       filterPhotoPosts.sort(function (PhotoPost1, PhotoPost2) { return new Date (PhotoPost2._createdAt)
           - new Date (PhotoPost1._createdAt) });
 
       return filterPhotoPosts;
+    }
+    getLenghtPosts()
+    {
+      return this._photoPosts.length;
+    }
+
+    getDownMore(skip, top)
+    {
+      return this._photoPosts.slice(skip, top);
     }
 
     getAuthor ()
@@ -289,10 +297,5 @@ class PostModel {
         return notValidate;
     }
   
-    // writePosts (){
-    //   this._photoPosts.map((v1) => {
-    //     console.log(v1)
-    //   });
-    // }
-  
+ 
   }

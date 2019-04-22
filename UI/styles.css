@@ -13,7 +13,7 @@ main
   width: 50px;
   height: 40px;
   font-family: "Tahoma", serif;
-  font-size: 30px;
+  font-size: 2vw;
   color: #000060; 
   font-weight: bold;
   margin-left: 2%;
@@ -32,54 +32,7 @@ header
     background: url(img/fon.jpg) ;
 }
 
-.btnLogOut
-{
-    border-radius:10%;
-    position: fixed ;
-    left: 90%;
-    background: #a086e7;
-    color: #edf1f1 ;
-    height:  8%;
-    font-size: 15px;
-    font-family: SEGOE PRINT;
-    position: fixed;
-    overflow: hidden;
-    margin-top: 2%;
-    
-}
-.btnAddPost
-{
-    border-radius:10%;
-    position: fixed ;
-    left: 79%;
-    background: #a086e7;
-    color: #edf1f1 ;
-    width: 90px;
-    height:  8%;
-    font-size: 70%;
-    font-family: SEGOE PRINT;
-    margin-top: 2%;
-   
-    
-}
-.btnMorePosts
-{
 
-    background: #a086e7;
-    color: #edf1f1 ;
-    width: 100%;
-    height:  10%;
-    font-family: SEGOE PRINT;
-    margin-top: 1.5%;
-    
-}
-.btnFilter
-{
-    background: #a086e7;
-    color: #edf1f1 ;
-    font-family: SEGOE PRINT;
-    border-radius: 5px;  
-}
 .photo1
 {
     width: 50px;
@@ -112,12 +65,17 @@ header
     height: auto;
     
   }
+  .merch img
+  {
+    width: 3vw;
+    height: 2vw;
+  }
   .userphotopost h2 {
     margin: 0;
     position: absolute;
     
     line-height: 1.1;
-    font-size: 1.2em;
+    font-size: 1.5vw;
     font-weight: 200;
     bottom: 1%;
     padding: 5% 7% 5% 10%;
@@ -130,12 +88,12 @@ header
     font-size: .7em;
   }
   .buttonPosts{
+    display: flex;
     position:absolute; 
     right: 8%;
     border:3px #000060 double; 
     width:33%;
     box-shadow:3px 3px 5px #999;
-    top: 0%;
     margin: 0;
     font-family: "SEGOE PRINT", sans-serif;
    
@@ -156,11 +114,15 @@ header
 }
 .buttonPosts .post-button
 {
+  display: none;
   width: 31px;
   height: 31px;
   position: relative;
   background: hsla(307, 29%, 56%, 0.7);  
   margin-right: 2px;
+}
+.is-auth .buttonPosts .post-button {
+  display: inline-block;
 }
 .buttonPosts {
     display: flex;
@@ -171,20 +133,17 @@ header
     width: 33%;
     box-shadow: 3px 3px 5px #999;
     top: 0%;
-    margin: 0;
+    margin: -35px 0 0  0;
     font-family: "SEGOE PRINT", sans-serif;
     background: hsla(307, 29%, 56%, 0.7);
 }
 
-div {
-    display: block;
-}
 
   .description{
     position:absolute; right: 8%; border:3px #000060 double; width:31%;
     box-shadow:3px 3px 5px #999;
-    top: 38px;
     margin: 0;
+    font-size: 1.7vw;
     font-family: "SEGOE PRINT", sans-serif;
     padding: 1%;
     background: hsla(309, 33%, 73%, 0.7);
@@ -224,6 +183,7 @@ div {
     color: #000060; 
     font-weight: bold;
     margin-left: 4%;
+    font-size: 1.7vw;
 }
 .childUsers{
   position: relative;
@@ -299,3 +259,56 @@ button {
 button:hover {
   box-shadow: 2px 4px 7px #372469
 }
+
+
+.btn {
+    background: #a086e7;
+    color: #edf1f1 ;
+    font-family: SEGOE PRINT;
+    border-radius: 5px;  
+}
+
+header {
+  display: flex;
+}
+.col {
+  flex: 1 0 auto;
+}
+
+header .btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+header .btn {
+  margin-top: 2%;  
+  overflow: hidden;
+}
+
+.btn-add-post
+{
+    margin: 0 35px 0 0; 
+}
+.btn-more-posts
+{
+  display: inline-block;
+  height:  10%;
+  margin-top: 1.5%;
+  width: 100%;
+}
+
+.test {
+  display: -webkit-inline-flex;
+  
+  position: absolute;
+  width: 100%;
+  left: 1%;
+}
+
+.is-auth .btn-log-in {display: none;}
+body:not(.is-auth) .btn-log-out { display: none; }
+body:not(.is-auth) .btn-add-post { display: none; }
+body:not(.is-auth) .btn-log-in {display: block;} 
+body:not(.is-auth) .buttonPosts {display: none;}

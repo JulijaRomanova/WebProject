@@ -15,8 +15,9 @@ class User
 			return false;
 		}
         return true;
-    }
-    setuserName(name = '') {
+	}
+
+	setuserName(name = '') {
 		if (name === '' || typeof (name) !== 'string') {
 			console.log('Incorrect argument!');
 			return;
