@@ -1,3 +1,5 @@
++function()
+{
 let photoPosts = [
 
     {
@@ -354,7 +356,6 @@ postsContaier.addEventListener('click', (event) => {
   const target = event.target.closest('[data-action]');
   const post = target.closest('userphotopost');
   const postId = post.id;
-
   let prevent = false;
   switch (target.dataset.action) {
     case 'like':
@@ -366,10 +367,10 @@ postsContaier.addEventListener('click', (event) => {
       prevent = true;
       break;
   }
-
   if (prevent) {
     event.preventDefault();
     event.stopPropagation();
   }
 });
 */
+}();

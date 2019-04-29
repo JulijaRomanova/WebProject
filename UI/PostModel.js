@@ -27,12 +27,14 @@ class PostModel {
       });
     }
   
-     getPhotoPost(id) {
-      for (var i = 0; i < this._photoPosts.length; i++) {
-        if (this._photoPosts[i]._id == id) {
-          return this._photoPosts[i];
+       getPhotoPost(id) {
+      return this._photoPosts.find(function (post)
+      {
+        if (post._id == id)
+        {
+          return post;
         }
-      }
+      })
     }
 
     getAllPosts()
@@ -42,37 +44,40 @@ class PostModel {
     
   
     editPhotoPost(id, photoPost) {
-      for (var i = 0;i< this._photoPosts.length;  i++) {
-        if (this._photoPosts[i]._id == id) {
-          if (photoPost.descriprion != null) {
-            this._photoPosts[i]._descriprion = photoPost.descriprion;
-          }
-          if (photoPost.photoLink != null) {
-            this._photoPosts[i]._photoLink = photoPost.photoLink;
-          }
-          if (photoPost.hashtags.length != 0) {
-            this._photoPosts[i]._hashtags = photoPost.hashtags;
-          }
-          return true;
+      let editPost = this.getPhotoPost(id);
+      if (editPost){
+        if (photoPost.descriprion ) {
+          editPost._descriprion = photoPost.descriprion;
         }
+        if (photoPost.photoLink ) {
+          editPost._photoLink = photoPost.photoLink;
+        }
+        if (photoPost.hashtags.length != 0) {
+          editPost._hashtags = photoPost.hashtags;
+        }
+        return true;
       }
       return false;
     }
   
     removePhotoPost(id) {
-      for (var i = 0 ; i < this._photoPosts.length; i++) {
-        if (this._photoPosts[i]._id == id) {
-          this._photoPosts.splice(i, 1);
-          return true;
+      let index = this._photoPosts.findIndex(function(post) {
+        if (post._id == id){
+          return post;
         }
+      });
+      if (index!= -1)
+      {
+        this._photoPosts.splice(index,1);
+        return true;
       }
       return false;
     }
   
-    static _debug (Posts)
+    static _debug (posts)
     {
       console.log('Filter : \n');
-      Posts.map((v1) => {
+      posts.map((v1) => {
         console.log(v1)
       });
     }
