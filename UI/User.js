@@ -6,7 +6,6 @@ class User
 			return;
 		}
 		this._name = name;
-		this._likedPosts = [];
 	}
 
 	isUserName() {

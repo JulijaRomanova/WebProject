@@ -1,8 +1,6 @@
-class View
-{
+class View {
 
-  _addViewPost (post, posts)
-  {
+  _addViewPost(post, posts) {
     const postEl = document.createElement('div');
     postEl.id = post._id;
     postEl.className = 'userphotopost';
@@ -14,7 +12,7 @@ class View
           </h2>
           <div class = "test">
             <div class = "buttonPosts">
-                <button class = "post-button" data-action="like">   
+                <button class = "post-button" id = "like" data-action="like">   
                     <img src="img/like.png" alt = 'like'>
                 </button>
                 <button class = "post-button" data-action="edit">
@@ -37,51 +35,48 @@ class View
     posts.appendChild(postEl);
   }
 
-  _showPost (post)
-  {
+  _showPost(post) {
     let photos = document.getElementById('photoPosts');
     this._addViewPost(post, photos);
   }
-  showPosts (posts)
-  {
+  showPosts(posts) {
     let photos = document.getElementById('photoPosts');
     console.log("Output \n");
-    posts.forEach((v1) => {   
+    posts.forEach((v1) => {
       console.log(v1);
-      this._addViewPost(v1, photos); 
+      this._addViewPost(v1, photos);
     });
-   
+
   }
 
-  clearPosts ()
-  {
+  clearPosts() {
     let posts = document.getElementById("photoPosts");
     posts.innerHTML = ``;
     //posts.parentNode.removeChild(posts);
 
   }
-  _removePost(id = 0) 
-  {
+  _removePost(id = 0) {
     let post = document.getElementById(id);
-    if(post)
-    {
+    if (post) {
       post.remove();
     }
   }
 
-  _editPost(id,  newPost)
-  {
+  _editPost(id, newPost) {
     let oldPost = document.getElementById(id);
-    if (oldPost)
-    {
+    if (oldPost) {
       oldPost.firstElementChild.setAttribute('src', newPost._photoLink);
       oldPost.querySelector('.description span').textContent = newPost._descriprion;
-      oldPost.querySelector('.description .tags').textContent = newPost._hashtags.join(','); 
+      oldPost.querySelector('.description .tags').textContent = newPost._hashtags.join(',');
     }
   }
 
-  setAuthorized (user) {
+  setAuthorized(user) {
     let headerAct = document.getElementById('username');
-    headerAct.textContent = user.getUserName() || 'Anonim';
+    let userName = user && user.getUserName();
+    headerAct.textContent = userName || 'Anonim';
+    document.body.classList.toggle('is-auth', user.isUserName());
   }
+
+
 }

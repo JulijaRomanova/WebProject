@@ -20,16 +20,20 @@
         </div>
         
         <div class="col btn-group">
-                <button class="btn btn-add-post">
-                        <img src="img/addPost.png" class="photo1" alt = "photoPost">
-                    </button>
-            <button class = "btn btn-log-out"> Log out </button>
+            <button class="btn btn-add-post" id = "add-post">
+                    <img src="img/addPost.png" id = "add-post" class="photo1" alt = "photoPost">
+            </button>
+            <button class = "btn btn-log-out" id = "log-out"> Log out </button>
             
-            <button class="btn btn-log-in"> Log in </button>
+            <button class="btn btn-log-in" id = "log-in"> Log in </button>
         </div>
     </header>
 
     <main>
+            <dialog id="login"></dialog>
+            <dialog id = "error"></dialog>
+            <dialog id = "btn-add"></dialog>
+            
         <form id="search">
             <label class = "users">
                 <div class="search-label"> Username </div>
@@ -53,9 +57,14 @@
         </form>
         
 
+      
         <div id="photoPosts" ></div> 
         
-        <button class="btn btn-more-posts"> Download more  </button>
+        <button class="btn btn-more-posts" id = "down-more"> Download more  </button>
+        
+
+        
+
         
     </main>
 
@@ -86,7 +95,8 @@
     <script src = "PostModel.js"></script>
     <script src = "View.js"></script>
     <script src = "User.js"></script>
-    <script src = "test.js"></script>
+    <script src = "Controller.js"></script>
+    <!-- <script src = "test.js"></script> -->
 </body>
 
 </html>
