@@ -250,7 +250,9 @@ header
   color: #372469;
   font-family: "SEGOE PRINT";
 }
-
+#like{
+  background: hsla(307, 29%, 56%, 0.7);
+}
 .search-label {
   display: inline;
 }

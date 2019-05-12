@@ -1,19 +1,5 @@
 class PostModel {
 
-  // constructor(posts) {
-  //   this._photoPosts = [];
-  //   posts.forEach(post => {
-  //     this._photoPosts.push({
-  //       _id: post.id,
-  //       _descriprion: post.descriprion,
-  //       _createdAt: PostModel._transformationDate(post.createdAt),
-  //       _author: post.author,
-  //       _photoLink: post.photoLink,
-  //       _likes: post.likes,
-  //       _hashtags: post.hashtags
-  //     });
-  //   });
-  // }
   constructor()
   {
     this._photoPosts = [];
@@ -177,12 +163,6 @@ class PostModel {
     return listTags;
   }
 
-  // static _validateId(photoPost) {
-  //   if (typeof (photoPost.id) != 'string') {
-  //     return false;
-  //   }
-  //   return true;
-  // }
 
   static _validateDescription(photoPost) {
     if (typeof (photoPost.descriprion) != 'string') {
@@ -268,6 +248,7 @@ class PostModel {
     post.id = 'post'+PostModel.count;
     PostModel.count++;
   }
+
   addPhotoPost(photoPost) {
     if (PostModel._validatePhotoPost(photoPost)) {
       PostModel.setId(photoPost);
@@ -293,7 +274,18 @@ class PostModel {
     return notValidate;
   }
 
-  
-
-
+  addLikeToPost(id, user){
+    let post = this.getPhotoPost(id);
+    if(post){
+      if(!post._likes.some(post_like => post_like === user.getUserName()))
+      {
+        post._likes.push(user.getUserName());
+        return true;
+      }
+      else{
+        post._likes.splice(post._likes.indexOf(user.getUserName()));
+        return false;
+      }
+    }
+  }
 }
