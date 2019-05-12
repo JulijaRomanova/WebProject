@@ -1,9 +1,15 @@
 +function () {
 
     let Posts = new PostModel();
+    if (localStorage.getItem('id0') !== null) {
+        Posts.restore();
+      }
 
-    let user;
+
+    let user = new User(localStorage.getItem(`user`));
     let ViewPhoto = new View();
+    ViewPhoto.showPosts(Posts.getAllPosts());
+    ViewPhoto.setAuthorized(user);
 
     let skip1 = 0;
     let top1 = 0;
@@ -23,6 +29,7 @@
             let logUser = document.getElementById("user-login").value;
             let userPassword = document.getElementById("user-password").value;
             if (logUser != '' && userPassword != '') {
+                localStorage.setItem(`user`, logUser);
                 user = new User(logUser);
                 ViewPhoto.setAuthorized(user);
                 console.log(logUser + " " + userPassword);
@@ -40,7 +47,9 @@
         if (event.target.id == "log-out") {
 
             user = new User('');
+            localStorage.setItem(`user`, '');
             ViewPhoto.setAuthorized(user);
+        
         }
     }
     
@@ -80,6 +89,7 @@
                 top1++;
             }
             document.getElementById('btn-add').close();
+            Posts.save();
             return true;
         }
     }
@@ -103,8 +113,9 @@
 
     function doLike(IdPost) {
         let flag = Posts.addLikeToPost(IdPost, user);
-        console.log(Posts.getPhotoPost(IdPost));
+        
         ViewPhoto.doLike(IdPost, flag);
+        Posts.save();
     }
 
     function editPosts(id) {
@@ -133,16 +144,20 @@
         }
         ViewPhoto._editPost(id, Posts.getPhotoPost(id));
         document.getElementById('dia-edit').close();
+        Posts.save();
         
     }
 
     function doDel(id) {
+          
         if (!Posts.removePhotoPost(id)) {
             return false;
         }
         skip1 -= 1;
         top1 -= 1;
         ViewPhoto._removePost(id);
+      
+        Posts.save();
         return true;
     }
 
@@ -150,14 +165,12 @@
         const postsContaier = document.querySelector('main');
         postsContaier.addEventListener('click', (event) => {
             const target = event.target.closest('[data-action]');
-            console.log("Target " + target);
             if (event.target.id == 'like' || event.target.id == 'edit' || event.target.id == 'delete'
             || event.target.id =='btn-edit') {
                 let post;
                 let postId;
                 if (event.target.id !='btn-edit')
                 {
-                    console.log(event.target.id);
                     post = target.closest('.userphotopost');
                     postId = post.id;
                 }

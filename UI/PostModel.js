@@ -288,4 +288,57 @@ class PostModel {
       }
     }
   }
+  clear(){
+    this._photoPosts = null;
+    this._photoPosts = [];
+    this._lenght = 0
+  }
+
+  save() {
+    for (let i = 0; i < this._photoPosts.length; i += 1) {
+      localStorage.setItem(`id${i}`, this._photoPosts[i]._id);
+
+      localStorage.setItem(`de${i}`, this._photoPosts[i]._descriprion);
+      let d = new Date(this._photoPosts[i]._createdAt);
+      localStorage.setItem(`ca${i}`, d.toISOString());
+      localStorage.setItem(`au${i}`, this._photoPosts[i]._author);
+      localStorage.setItem(`pl${i}`, this._photoPosts[i]._photoLink);
+      for (let j = 0; j < this._photoPosts[i]._hashtags.length; j += 1) {
+        localStorage.setItem(`ht${i}|${j}`, this._photoPosts[i]._hashtags[j]);
+      }
+      localStorage.setItem(`htl${i}`, this._photoPosts[i]._hashtags.length);
+      for (let j = 0; j < this._photoPosts[i]._likes.length; j += 1) {
+        localStorage.setItem(`li${i}|${j}`, this._photoPosts[i]._likes[j]);
+      }
+      localStorage.setItem(`lkl${i}`, this._photoPosts[i]._likes.length);
+    }
+    localStorage.setItem('co', this._photoPosts.length);
+  }
+
+  restore() {
+    const stop = localStorage.getItem('co');
+    for (let j = 0; j < stop; j += 1) {
+      let len = localStorage.getItem(`htl${j}`);
+      let hash = [];
+      for (let h = 0; h < len; h += 1) {
+        hash.push( localStorage.getItem(`ht${j}|${h}`));
+      }
+      len = localStorage.getItem(`lkl${j}`);
+      let likes1 = [];
+      for (let h = 0; h < len; h += 1) {
+        likes1.push(localStorage.getItem(`li${j}|${h}`));
+      }
+      let photoPost = {
+        id: localStorage.getItem(`id${j}`),
+        descriprion : localStorage.getItem(`de${j}`),
+        createdAt : new Date(localStorage.getItem(`ca${j}`)),
+        author : localStorage.getItem(`au${j}`),
+        photoLink: localStorage.getItem(`pl${j}`),
+        hashtags : hash,
+        likes: likes1
+      }
+      this.addPhotoPost(photoPost);
+    
+    }
+  }
 }
