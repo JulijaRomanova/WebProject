@@ -1,7 +1,6 @@
 class PostModel {
 
-  constructor()
-  {
+  constructor() {
     this._photoPosts = [];
     PostModel.count = 1;
   }
@@ -88,6 +87,7 @@ class PostModel {
     if (skip + top > this._photoPosts.length) {
       allLen = this._photoPosts.length;
     }
+    
     if (filterConfig.hashtags.length !== 0 || filterConfig.author !== "" || filterConfig.createdAt != 'Invalid Date') {
       filterPhotoPosts = this._photoPosts.filter((post) => {
         let isTag = true;
@@ -101,24 +101,27 @@ class PostModel {
 
         isAut = filterConfig.author == "" || filterConfig.author == null || (post._author === filterConfig.author);
 
-       let newDate = new Date(post._createdAt);
-       isDate = filterConfig.createdAt == 'Invalid Date' || newDate.toISOString().substr(0, 16) == (filterConfig.createdAt.toISOString().substr(0, 16));
-    
+        let newDate = new Date(post._createdAt);
+        isDate = filterConfig.createdAt == 'Invalid Date' || newDate.toISOString().substr(0, 16) == (filterConfig.createdAt.toISOString().substr(0, 16));
+
         filterPhotoPosts = filterPhotoPosts.slice(skip, allLen);
         return isAut && isTag && isDate;
       });
     }
+    
     else {
       filterPhotoPosts = this._photoPosts.slice(skip, allLen);
     }
-    // if (filterPhotoPosts.length != 0)
-    //   filterPhotoPosts.sort(function (PhotoPost1, PhotoPost2) {
-    //     return new Date(PhotoPost2._createdAt)
-    //       - new Date(PhotoPost1._createdAt)
-    //   });
+  
+    if (filterPhotoPosts.length != 0)
+      filterPhotoPosts.sort(function (PhotoPost1, PhotoPost2) {
+        return new Date(PhotoPost2._createdAt)
+          - new Date(PhotoPost1._createdAt)
+      });
 
-    return filterPhotoPosts;
+      return filterPhotoPosts;
   }
+  
   getLenghtPosts() {
     return this._photoPosts.length;
   }
@@ -243,9 +246,8 @@ class PostModel {
     }
   }
 
-  static setId(post)
-  {
-    post.id = 'post'+PostModel.count;
+  static setId(post) {
+    post.id = 'post' + PostModel.count;
     PostModel.count++;
   }
 
@@ -274,24 +276,22 @@ class PostModel {
     return notValidate;
   }
 
-  addLikeToPost(id, user){
+  addLikeToPost(id, user) {
     let post = this.getPhotoPost(id);
-    if(post){
-      if(!post._likes.some(post_like => post_like === user.getUserName()))
-      {
+    if (post) {
+      if (!post._likes.some(post_like => post_like === user.getUserName())) {
         post._likes.push(user.getUserName());
         return true;
       }
-      else{
+      else {
         post._likes.splice(post._likes.indexOf(user.getUserName()));
         return false;
       }
     }
   }
-  clear(){
+  clear() {
     this._photoPosts = null;
     this._photoPosts = [];
-    this._lenght = 0
   }
 
   save() {
@@ -321,7 +321,7 @@ class PostModel {
       let len = localStorage.getItem(`htl${j}`);
       let hash = [];
       for (let h = 0; h < len; h += 1) {
-        hash.push( localStorage.getItem(`ht${j}|${h}`));
+        hash.push(localStorage.getItem(`ht${j}|${h}`));
       }
       len = localStorage.getItem(`lkl${j}`);
       let likes1 = [];
@@ -330,15 +330,15 @@ class PostModel {
       }
       let photoPost = {
         id: localStorage.getItem(`id${j}`),
-        descriprion : localStorage.getItem(`de${j}`),
-        createdAt : new Date(localStorage.getItem(`ca${j}`)),
-        author : localStorage.getItem(`au${j}`),
+        descriprion: localStorage.getItem(`de${j}`),
+        createdAt: new Date(localStorage.getItem(`ca${j}`)),
+        author: localStorage.getItem(`au${j}`),
         photoLink: localStorage.getItem(`pl${j}`),
-        hashtags : hash,
+        hashtags: hash,
         likes: likes1
       }
       this.addPhotoPost(photoPost);
-    
+
     }
   }
 }

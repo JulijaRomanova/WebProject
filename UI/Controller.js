@@ -8,11 +8,15 @@
 
     let user = new User(localStorage.getItem(`user`));
     let ViewPhoto = new View();
-    ViewPhoto.showPosts(Posts.getAllPosts());
+    ViewPhoto.showPosts(Posts.getDownMore(0,10));
     ViewPhoto.setAuthorized(user);
 
     let skip1 = 0;
-    let top1 = 0;
+    let top1 = 10;
+    if (Posts.getLenghtPosts()<10)
+    {
+        top1 = Posts.getLenghtPosts();
+    }
 
     let saveId =0;
 
