@@ -30,9 +30,44 @@
     </header>
 
     <main>
-            <dialog id="login"></dialog>
-            <dialog id = "error"></dialog>
-            <dialog id = "btn-add"></dialog>
+            <dialog id="login">
+                <label >
+                    <div  class = "font"> Login </div>
+                    <input type="text" id ="user-login" class = "inputs" placeholder = "Input login" autocomplete="off" />
+                </label>       
+                <label>
+                    <div class="font">Password</div>
+                    <input type="text" id="user-password" class = "inputs" placeholder = "Input Password" autocomplete="off"/>
+                </label>
+            </dialog>
+            
+            <dialog id = "error">
+                <div class = "font error">
+                    <img  src="img/err.jpg" class = "error" alt = 'Invalid photo'>
+                  </div>
+                  <h3 class = "font error">Input Error</h3>
+                  <h3 class = "font error">Please, try again...</h3> 
+            </dialog>
+
+            <dialog id = "btn-add">
+                <div class = "font">Your photoPost</div>
+                <label >
+                    <div  class = "font"> Photo </div>
+                    <input type="text" id ="photo" class = "inputs" placeholder = "Input img/_.jpg" autocomplete="off" />
+                </label>
+                <label >
+                    <div  class = "font"> Description </div>
+                    <input type="text" id ="decr" class = "inputs" placeholder = "Input decription" autocomplete="off" />
+                </label>
+                <label >
+                    <div  class = "font"> HashTags </div>
+                    <input type="text" id ="hash" class = "inputs" placeholder = "Input hashTags" autocomplete="off" />
+                </label>
+                <div class = "font" id = "user_name_post">Username: </div>
+                <button class="btn btn-add-post" id = "btn-add">
+                        add post
+                </button>
+            </dialog>
             <dialog id = "dia-edit"></dialog>
             
         <form id="search">

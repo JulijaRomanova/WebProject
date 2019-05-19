@@ -1,29 +1,23 @@
 +function () {
 
     let Posts = new PostModel();
-    if (localStorage.getItem('id0') !== null) {
-        Posts.restore();
-      }
-
+    Posts.restore();
 
     let user = new User(localStorage.getItem(`user`));
     let ViewPhoto = new View();
     ViewPhoto.showPosts(Posts.getDownMore(0,10));
     ViewPhoto.setAuthorized(user);
 
-    let skip1 = 0;
-    let top1 = 10;
-    if (Posts.getLenghtPosts()<10)
-    {
-        top1 = Posts.getLenghtPosts();
+    let skip = 0;
+    let top = 10;
+    let saveId = 0;
+    if (Posts.getLenghtPosts()<10) {
+        top = Posts.getLenghtPosts();
     }
-
-    let saveId =0;
 
     function login(event) {
         if (event.target.id === "log-in") {
             const log = document.getElementById('login');
-            ViewPhoto.login();
             log.showModal();
         }
     }
@@ -42,18 +36,15 @@
             else {
                 document.getElementById('login').close();
                 const err = document.getElementById('error');
-                ViewPhoto.error();
                 err.showModal();
             }
         }
     }
     function logOut(event) {
         if (event.target.id == "log-out") {
-
             user = new User('');
             localStorage.setItem(`user`, '');
             ViewPhoto.setAuthorized(user);
-        
         }
     }
     
@@ -88,29 +79,32 @@
                 document.getElementById('add-photoPost').close();
                 return false;
             }
-            if (top1 + 1 <= 10) {
+            if (top + 1 <= 10) {
                 ViewPhoto._showPost(Posts.getPhotoPost(post.id));
-                top1++;
+                top++;
             }
             document.getElementById('btn-add').close();
             Posts.save();
+            document.getElementById("photo").value = "";
+            document.getElementById("decr").value = "";
+            document.getElementById("hash").value ="";
             return true;
         }
     }
 
     function downLoadMore(event) {
         if (event.target.id === "down-more") {
-            skip1 = top1;
-            let lenPosts = Posts.getLenghtPosts() - skip1;
-            top1 += 10;
+            skip = top;
+            let lenPosts = Posts.getLenghtPosts() - skip;
+            top += 10;
             if (lenPosts < 10) {
-                top1 -= 10;
-                top1 += lenPosts;
+                top -= 10;
+                top += lenPosts;
             }
 
-            let morePosts = Posts.getDownMore(skip1, top1);
+            let morePosts = Posts.getDownMore(skip, top);
             if (morePosts.length != 0) {
-                ViewPhoto.showPosts(Posts.getDownMore(skip1, top1));
+                ViewPhoto.showPosts(Posts.getDownMore(skip, top));
             }
         }
     }
@@ -157,27 +151,24 @@
         if (!Posts.removePhotoPost(id)) {
             return false;
         }
-        skip1 -= 1;
-        top1 -= 1;
+        skip -= 1;
+        top -= 1;
         ViewPhoto._removePost(id);
       
         Posts.save();
         return true;
     }
 
+
     function eventPost() {
         const postsContaier = document.querySelector('main');
         postsContaier.addEventListener('click', (event) => {
             const target = event.target.closest('[data-action]');
-            if (event.target.id == 'like' || event.target.id == 'edit' || event.target.id == 'delete'
-            || event.target.id =='btn-edit') {
+            if (event.target.id == 'like' || event.target.id == 'edit' || event.target.id == 'delete') {
                 let post;
                 let postId;
-                if (event.target.id !='btn-edit')
-                {
-                    post = target.closest('.userphotopost');
-                    postId = post.id;
-                }
+                post = target.closest('.userphotopost');
+                postId = post.id;
                 let prevent = false;
                 switch (target.dataset.action) {
                     case 'like':
@@ -189,16 +180,11 @@
                         prevent = true;
                         saveId = postId;
                         break;
-                    case 'btn-edit': 
-                        saveEdit(saveId);
-                        prevent = true;
-                        break;
                     case 'del':
                         doDel(postId);
                         prevent = true;
                         break;
                 }
-
                 if (prevent) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -206,6 +192,14 @@
             }
         });
 
+    }
+
+    function dialog_edit(event){
+        if (event.target.id =='btn-edit') {
+        saveEdit(saveId);
+        event.preventDefault();
+        event.stopPropagation();
+        }
     }
 
 
@@ -276,5 +270,7 @@
     document.body.addEventListener('click', showVariantsDates);
     document.body.addEventListener('click', filterClickEvent);
     document.body.addEventListener('click', eventPost);
+    document.body.addEventListener('click', dialog_edit);
+    
 
 }();

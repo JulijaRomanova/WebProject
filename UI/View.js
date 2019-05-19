@@ -29,9 +29,7 @@ class View {
                 </div>
             </div>
           </div>
-        
     `;
-
     posts.appendChild(postEl);
   }
 
@@ -80,7 +78,6 @@ class View {
       let like = post.querySelector('#like');
       like.firstElementChild.setAttribute('src','img/like_red.png');
       like.firstElementChild.style.background = "hsla(307, 29%, 56%, 0.7)";
-      
     }
     
   }
@@ -92,52 +89,11 @@ class View {
     document.body.classList.toggle('is-auth', user.isUserName());
   }
 
-  login(){
-    const log = document.getElementById('login');
-    log.innerHTML = `
-    <label >
-        <div  class = "font"> Login </div>
-        <input type="text" id ="user-login" class = "inputs" placeholder = "Input login" autocomplete="off" />
-    </label>
-            
-    <label>
-        <div class="font">Password</div>
-        <input type="text" id="user-password" class = "inputs" placeholder = "Input Password" autocomplete="off"/>
-    </label>
-    `;
-  }
-
-  error(){
-    const err = document.getElementById('error');
-    err.innerHTML = `
-    <div class = "font error">
-      <img  src="img/err.jpg" class = "error" alt = 'Invalid photo'>
-    </div>
-    <h3 class = "font error">Input Error</h3>
-    <h3 class = "font error">Please, try again...</h3> 
-    `;
-  }
 
   pageAddPost(user){
-    const post = document.getElementById('btn-add');
+    const post = document.getElementById('user_name_post');
     post.innerHTML = `
-    <div class = "font">Your photoPost</div>
-    <label >
-        <div  class = "font"> Photo </div>
-        <input type="text" id ="photo" class = "inputs" placeholder = "Input img/_.jpg" autocomplete="off" />
-    </label>
-    <label >
-        <div  class = "font"> Description </div>
-        <input type="text" id ="decr" class = "inputs" placeholder = "Input decription" autocomplete="off" />
-    </label>
-    <label >
-        <div  class = "font"> HashTags </div>
-        <input type="text" id ="hash" class = "inputs" placeholder = "Input hashTags" autocomplete="off" />
-    </label>
-    <div class = "font">Username:  ${user.getUserName()}</div>
-    <button class="btn btn-add-post" id = "btn-add">
-            add post
-    </button>
+    <p>Username:  ${user.getUserName()}</p>
     `;
   }
 
@@ -163,6 +119,4 @@ class View {
     </button>
     `;
   }
-
-
 }
