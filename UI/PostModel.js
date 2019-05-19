@@ -290,6 +290,7 @@
       }
     }
 
+  
     restore() {
       const items = localStorage.getItem('myPosts');
       try {
