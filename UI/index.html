@@ -50,24 +50,26 @@
             </dialog>
 
         
-            <dialog id = "btn-add">
+            <dialog id = "dia-add-edit">
                 <div class = "font">Your photoPost</div>
-                <label >
-                    <div  class = "font"> Photo </div>
-                    <input type="text" id ="photo" class = "inputs" placeholder = "Input img/_.jpg" autocomplete="off" />
-                </label>
-                <label >
-                    <div  class = "font"> Description </div>
-                    <input type="text" id ="decr" class = "inputs" placeholder = "Input decription" autocomplete="off" />
-                </label>
-                <label >
-                    <div  class = "font"> HashTags </div>
-                    <input type="text" id ="hash" class = "inputs" placeholder = "Input hashTags" autocomplete="off" />
-                </label>
-                <div class = "font" id = "user_name_post">Username: </div>
-                <button class="btn btn-add-post" id = "btn-add">
-                        add post
-                </button>
+                <form id="edit-form" action="javascript: void 0;" > 
+                    <label >
+                        <div  class = "font"> Photo </div>
+                        <input type="text" required name="photo" class = "inputs" placeholder = "Input img/_.jpg" autocomplete="off" />
+                    </label>
+                    <label >
+                        <div  class = "font"> Description </div>
+                        <input type="text" name="decr" class = "inputs" placeholder = "Input decription" autocomplete="off" />
+                    </label>
+                    <label >
+                        <div  class = "font"> HashTags </div>
+                        <input type="text" name="hash" class = "inputs" placeholder = "Input hashTags" autocomplete="off" />
+                    </label>
+                    <div class = "font" id = "user_name_post">Username: </div>
+                    <button class="btn btn-add-post" type="submit">
+                            enter
+                    </button>
+                </form>
             </dialog>
             <dialog id = "dia-edit"></dialog>
             

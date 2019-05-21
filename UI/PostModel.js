@@ -1,15 +1,15 @@
 (function () {
-  function transformPost(post) {
-    return {
-      _id: post.id,
-      _descriprion: post.descriprion,
-      _createdAt: PostModel._transformationDate(post.createdAt),
-      _author: post.author,
-      _photoLink: post.photoLink,
-      _likes: post.likes,
-      _hashtags: post.hashtags
-    };
-  }
+  // function transformPost(post) {
+  //   return {
+  //     _id: post.id,
+  //     _description: post.description,
+  //     _createdAt: PostModel._transformationDate(post.createdAt),
+  //     _author: post.author,
+  //     _photoLink: post.photoLink,
+  //     _likes: post.likes,
+  //     _hashtags: post.hashtags
+  //   };
+  // }
 
   class PostModel {
 
@@ -19,7 +19,7 @@
 
     getPhotoPost(id) {
       return this._photoPosts.find(function (post) {
-        if (post._id == id) {
+        if (post.id == id) {
           return post;
         }
       })
@@ -32,14 +32,14 @@
     editPhotoPost(id, photoPost) {
       let editPost = this.getPhotoPost(id);
       if (editPost) {
-        if (photoPost.descriprion) {
-          editPost._descriprion = photoPost.descriprion;
+        if (photoPost.description) {
+          editPost.description = photoPost.description;
         }
         if (photoPost.photoLink) {
-          editPost._photoLink = photoPost.photoLink;
+          editPost.photoLink = photoPost.photoLink;
         }
         if (photoPost.hashtags.length != 0) {
-          editPost._hashtags = photoPost.hashtags;
+          editPost.hashtags = photoPost.hashtags;
         }
         return true;
       }
@@ -48,7 +48,7 @@
 
     removePhotoPost(id) {
       let index = this._photoPosts.findIndex(function (post) {
-        if (post._id == id) {
+        if (post.id == id) {
           return post;
         }
       });
@@ -94,13 +94,13 @@
           let isDate = true;
           if (filterConfig.hashtags.length != 0) {
             isTag = filterConfig.hashtags.every(function (filterHashTag) {
-              return (post._hashtags.some(postTag => postTag === filterHashTag));
+              return (post.hashtags.some(postTag => postTag === filterHashTag));
             });
           }
 
-          isAut = filterConfig.author == "" || filterConfig.author == null || (post._author === filterConfig.author);
+          isAut = filterConfig.author == "" || filterConfig.author == null || (post.author === filterConfig.author);
 
-          let newDate = new Date(post._createdAt);
+          let newDate = new Date(post.createdAt);
           isDate = filterConfig.createdAt == 'Invalid Date' || newDate.toISOString().substr(0, 16) == (filterConfig.createdAt.toISOString().substr(0, 16));
 
           filterPhotoPosts = filterPhotoPosts.slice(skip, allLen);
@@ -114,8 +114,8 @@
 
       if (filterPhotoPosts.length != 0)
         filterPhotoPosts.sort(function (PhotoPost1, PhotoPost2) {
-          return new Date(PhotoPost2._createdAt)
-            - new Date(PhotoPost1._createdAt)
+          return new Date(PhotoPost2.createdAt)
+            - new Date(PhotoPost1.createdAt)
         });
 
       return filterPhotoPosts;
@@ -131,7 +131,7 @@
 
     getAuthor() {
       const authorMap = this._photoPosts.reduce((map, item) => {
-        map[item._author] = 1;
+        map[item.author] = 1;
         return map;
       }, {}
       );
@@ -141,7 +141,7 @@
     getDates() {
 
       const datesMap = this._photoPosts.reduce((map, item) => {
-        map[item._createdAt] = 1;
+        map[item.createdAt] = 1;
         return map;
       }, {}
       );
@@ -150,7 +150,7 @@
 
     getHashTags() {
       const tagMap = this._photoPosts.reduce((map, item) => {
-        (item._hashtags || []).forEach((hash) => {
+        (item.hashtags || []).forEach((hash) => {
           map[hash] = 1;
         });
         return map;
@@ -160,10 +160,10 @@
     }
 
     static _validateDescription(photoPost) {
-      if (typeof (photoPost.descriprion) != 'string') {
+      if (typeof (photoPost.description) != 'string') {
         return false;
       }
-      else if (photoPost.descriprion.length > 200 || photoPost.descriprion == null) {
+      else if (photoPost.description.length > 200 || photoPost.description == null) {
         return false;
       }
       return true;
@@ -242,15 +242,17 @@
       return 'post-' + Math.floor(Math.random() * Number.MAX_SAFE_INTEGER).toString(32);
     }
 
-    addPhotoPost(photoPost) {
-      if (this._photoPosts.some(post => photoPost.id === post._id)) {
+    PhotoPost(photoPost) {
+      if (this._photoPosts.some(post => photoPost.id === post.id)) {
         return false;
       }
       if (PostModel._validatePhotoPost(photoPost)) {
         photoPost.id = PostModel.generateId();
-        this._photoPosts.push(transformPost(photoPost));
-        return true;
+        photoPost.createdAt = PostModel._transformationDate(photoPost.createdAt);
+        this._photoPosts.push(photoPost);
+        return photoPost;
       }
+
       return false;
     }
 
@@ -269,12 +271,12 @@
       if (!post) {
         return;
       }
-      const index = post._likes.indexOf(user.getUserName());
+      const index = post.likes.indexOf(user.getUserName());
       if (index === -1) {
-        post._likes.push(user.getUserName());
+        post.likes.push(user.getUserName());
         return true;
       }
-      post._likes.splice(post._likes.indexOf(user.getUserName()));
+      post.likes.splice(post.likes.indexOf(user.getUserName()));
       return false;
     }
     clear() {

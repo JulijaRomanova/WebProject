@@ -50,45 +50,11 @@
     
     function addPost(event) {
         if (event.target.id === "add-post") {
-            const post = document.getElementById('btn-add');
+            const post = document.getElementById('dia-add-edit');
+            saveId = null;
+            document.getElementById("edit-form").reset();
             ViewPhoto.pageAddPost(user);
             post.showModal();
-        }
-    }
-
-    function savePost(event) {
-        if (event.target.id === "btn-add") {
-            let post = {
-                id: '',
-                descriprion: '',
-                createdAt: new Date(),
-                author: '',
-                photoLink: '',
-                likes: [],
-                hashtags: []
-            }
-            post.author = user.getUserName();
-            post.photoLink = document.getElementById("photo").value;
-            post.descriprion = document.getElementById("decr").value;
-            post.createdAt = new Date();
-            post.likes = [];
-            post.hashtags = [];
-            let tags = document.getElementById("hash").value;
-            post.hashtags = tags.split(' ');
-            if (!Posts.addPhotoPost(post)) {
-                document.getElementById('add-photoPost').close();
-                return false;
-            }
-            if (top + 1 <= 10) {
-                ViewPhoto._showPost(Posts.getPhotoPost(post.id));
-                top++;
-            }
-            document.getElementById('btn-add').close();
-            Posts.save();
-            document.getElementById("photo").value = "";
-            document.getElementById("decr").value = "";
-            document.getElementById("hash").value ="";
-            return true;
         }
     }
 
@@ -118,32 +84,11 @@
 
     function editPosts(id) {
         let oldPost = Posts.getPhotoPost(id);
-        const editPost = document.getElementById('dia-edit');
-        ViewPhoto.pageEditPost(oldPost, user);
+        const editPost = document.getElementById('dia-add-edit');
+        ViewPhoto.fillEditForm(oldPost);
 
         if (editPost.open != true)
             editPost.showModal();
-    }
-
-    function saveEdit (id)
-    {
-        let newPost =
-        {
-            descriprion: '',
-            photoLink: '',
-            hashtags: []
-        }
-        newPost.photoLink = document.getElementById('new-photo').value;
-        newPost.descriprion = document.getElementById('new-decr').value;
-        newPost.hashtags = document.getElementById('new-hash').value.split(',');
-
-        if (!Posts.editPhotoPost(id, newPost)) {
-            return false;
-        }
-        ViewPhoto._editPost(id, Posts.getPhotoPost(id));
-        document.getElementById('dia-edit').close();
-        Posts.save();
-        
     }
 
     function doDel(id) {
@@ -164,7 +109,7 @@
         const postsContaier = document.querySelector('main');
         postsContaier.addEventListener('click', (event) => {
             const target = event.target.closest('[data-action]');
-            if (event.target.id == 'like' || event.target.id == 'edit' || event.target.id == 'delete') {
+            if (target) {
                 let post;
                 let postId;
                 post = target.closest('.userphotopost');
@@ -192,14 +137,47 @@
             }
         });
 
+    }    
+
+    function getPostDefaults() {
+        return {
+            createdAt: new Date(),
+            author: user.getUserName(),
+            likes: []
+        };
     }
 
-    function dialog_edit(event){
-        if (event.target.id =='btn-edit') {
-        saveEdit(saveId);
+    function onFormSubmit(event) {
         event.preventDefault();
-        event.stopPropagation();
+
+        const formData = new FormData(document.querySelector('#edit-form'));
+        const newPost = {
+            description: formData.get('decr'),
+            photoLink: formData.get('photo'),
+            hashtags: formData.get('hash').split(' ')
+        };
+        if (!saveId) {
+            Object.assign(newPost, getPostDefaults());
         }
+
+        if (saveId) {
+            if (!Posts.editPhotoPost(saveId, newPost)) {
+                return false;
+            }
+        } else {
+            let post;
+            if (!(post = Posts.addPhotoPost(newPost))) {
+                return false;
+            }
+            if (top + 1 <= 10) {
+                ViewPhoto._showPost(Posts.getPhotoPost(post.id));
+                top++;
+            }
+        }
+        
+        ViewPhoto._editPost(saveId, Posts.getPhotoPost(saveId));
+        document.getElementById('dia-add-edit').close();
+        Posts.save();
     }
 
 
@@ -263,14 +241,12 @@
     document.body.addEventListener('keydown', saveLogin);
     document.body.addEventListener('click', logOut);
     document.body.addEventListener('click', addPost);
-    document.body.addEventListener('click', savePost);
     document.body.addEventListener('click', downLoadMore);
     document.body.addEventListener('click', showVariantsHashTags);
     document.body.addEventListener('click', showVariantsAuthors);
     document.body.addEventListener('click', showVariantsDates);
     document.body.addEventListener('click', filterClickEvent);
-    document.body.addEventListener('click', eventPost);
-    document.body.addEventListener('click', dialog_edit);
-    
+    document.body.addEventListener('click', eventPost);  
+    document.querySelector('#edit-form').addEventListener('submit', onFormSubmit);
 
 }();

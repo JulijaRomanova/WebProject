@@ -58,7 +58,7 @@ class Answer {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = (name.equals("")) ? "no name" : name;
     }
 
 

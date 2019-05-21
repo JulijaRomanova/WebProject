@@ -2,13 +2,13 @@ class View {
 
   _addViewPost(post, posts) {
     const postEl = document.createElement('div');
-    postEl.id = post._id;
+    postEl.id = post.id;
     postEl.className = 'userphotopost';
     postEl.innerHTML = `
     
-          <img src=${post._photoLink}  alt = 'Invalid photo'>
-          <h2 >${post._author}<br>
-              <i class="date">${(post._createdAt)}</i>
+          <img src=${post.photoLink}  alt = 'Invalid photo'>
+          <h2 >${post.author}<br>
+              <i class="date">${(post.createdAt)}</i>
           </h2>
           <div class = "test">
             <div class = "buttonPosts">
@@ -23,9 +23,9 @@ class View {
                 </button>
             </div>
             <div class = "description">
-                <span>${post._descriprion}</span>
+                <span>${post.description}</span>
                 <div class = "tags">
-                    ${post._hashtags.join(',')}
+                    ${post.hashtags.join(',')}
                 </div>
             </div>
           </div>
@@ -62,9 +62,9 @@ class View {
   _editPost(id, newPost) {
     let oldPost = document.getElementById(id);
     if (oldPost) {
-      oldPost.firstElementChild.setAttribute('src', newPost._photoLink);
-      oldPost.querySelector('.description span').textContent = newPost._descriprion;
-      oldPost.querySelector('.description .tags').textContent = newPost._hashtags.join(',');
+      oldPost.firstElementChild.setAttribute('src', newPost.photoLink);
+      oldPost.querySelector('.description span').textContent = newPost.description;
+      oldPost.querySelector('.description .tags').textContent = newPost.hashtags.join(',');
     }
   }
 
@@ -97,26 +97,10 @@ class View {
     `;
   }
 
-  pageEditPost( oldPost, user){
-    const editPost = document.getElementById('dia-edit');
-    editPost.innerHTML = `
-    <div class = "font">Edit photoPost</div>
-    <label >
-        <div  class = "font"> New Photo </div>
-        <input type="text" id ="new-photo" class = "inputs" value = ${oldPost._photoLink} >
-    </label>
-    <label >
-        <div  class = "font"> New Description </div>
-        <input type="text" id ="new-decr" class = "inputs" value = "${oldPost._descriprion}" >
-    </label>
-    <label >
-        <div  class = "font"> New HashTags </div>
-        <input type="text" id ="new-hash" class = "inputs" value = ${oldPost._hashtags.join(',')} >
-    </label>
-    <div class = "font">Username:  ${user.getUserName()}</div>
-    <button class="btn btn-add-post" id = "btn-edit" data-action=  "btn-edit">
-            edit post
-    </button>
-    `;
+  fillEditForm(post) {
+    const form = document.querySelector('#edit-form');
+    form.querySelector('[name="decr"]').value = post.description || '';
+    form.querySelector('[name="photo"]').value = post.photoLink || '';
+    form.querySelector('[name="hash"]').value = (post.hashtags || []).join(' ');
   }
 }
