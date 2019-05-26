@@ -1,493 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <link href="styles.css" rel="stylesheet" type="text/css"
-        style=" background: #1728 url(bg.jpg) no-repeat 100% 100%;">
+    <title>Insta Life</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" 
+        integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" 
+        crossorigin="anonymous"></script>
+    <meta name="viewport" charset="UTF-8"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="styles.css" rel="stylesheet" type="text/css">
 
 </head>
 
-<body class="fon">
+<body class="backgroundSite">
     <header class="back-gr">
-        <div>
-            <span>
-                <h1> Insta <img src="img/leaves.jpg" width="50" height="40""> Life 
-                        
-                        <button class = " butt1">
-                    <tr>
-                        <td><em>Log out</em></td>
-                    </tr>
-                    </button>
-                    <button class="butt2">
-                        <tr>
-                            <td>
-                                <img src="img/photopost1.jpg" class="photo1">
-                            </td>
-                        </tr>
-                    </button>
-                </h1>
-                <h2 class="username"> Romanova Julia </h2>
-            </span>
+        <div class="col">
+            <span class = "merch"> Insta <img src="img/leaves.jpg" class = "merch" alt = "merch">Life</span>
+            <div class="username" id="username">Anonim</div>
+        </div>
+        
+        <div class="col btn-group">
+            <button class="btn btn-add-post" id = "add-post">
+                    <img src="img/addPost.png" id = "add-post" class="photo1" alt = "photoPost">
+            </button>
+            <button class = "btn btn-log-out" id = "log-out"> Log out </button>
+            
+            <button class="btn btn-log-in" id = "log-in"> Log in </button>
         </div>
     </header>
 
     <main>
-
-        <form>
-            <label>
-                <em> Username </em>
-                <input type="text" name="username" />
-            </label>
-            <label>
-                <em>date</em>
-                <input type="text" name="date" />
-            </label>
-            <label>
-                <em>Hashtags</em>
-                <input type="text" name="Hashtags" />
-            </label>
-            <label>
-                <button>filter</button>
-            </label>
-        </form>
-
-        <script src = "index.js"></script>
-        
+            <dialog id="login">
+                <label >
+                    <div  class = "font"> Login </div>
+                    <input type="text" id ="user-login" class = "inputs" placeholder = "Input login" autocomplete="off" />
+                </label>       
+                <label>
+                    <div class="font">Password</div>
+                    <input type="text" id="user-password" class = "inputs" placeholder = "Input Password" autocomplete="off"/>
+                </label>
+            </dialog>
             
-        <div class="userphotopost">
-            <img src="img/nature.jpg">
-            <h2>Romanova Julia<br>
-                <i class="date">21.02.2019 16:30</i>
-            </h2>
-            <h3 class = "decription">
-                <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                        <tr>
-                                <td>
-                                    <img src="img/like.png" >
-                                </td>
-                            </tr>
-                    <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                        <tr>
-                            <td>
-                                    <img src="img/kar.png" >
-                                
-                            </td>
-                        </tr>
-                        <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                <tr>
-                                    <td>
-                                            <img src="img/ftcheckmark.png" >
-                                    </td>
-                                </tr>
-                            </button> 
-                    </button> 
-                </button>
-              
-             </h3>
-            <h3 class = "decription1">
-                Good memory! I graduated from music school . Music is what I like !
-                <div class = "decription2">
-                        #BSU#fpmi#musik#love#thinks
-                </div>
-            </h3>
-           
+            <dialog id = "error">
+                <div class = "font error">
+                    <img  src="img/err.jpg" class = "error" alt = 'Invalid photo'>
+                  </div>
+                  <h3 class = "font error">Input Error</h3>
+                  <h3 class = "font error">Please, try again...</h3> 
+            </dialog>
 
-        </div>
+        
+            <dialog id = "dia-add-edit">
+                <div class = "font">Your photoPost</div>
+                <form id="edit-form" action="javascript: void 0;" > 
+                    <label >
+                        <div  class = "font"> Photo </div>
+                        <input type="text" required name="photo" class = "inputs" placeholder = "Input img/_.jpg" autocomplete="off" />
+                    </label>
+                    <label >
+                        <div  class = "font"> Description </div>
+                        <input type="text" name="decr" class = "inputs" placeholder = "Input decription" autocomplete="off" />
+                    </label>
+                    <label >
+                        <div  class = "font"> HashTags </div>
+                        <input type="text" name="hash" class = "inputs" placeholder = "Input hashTags" autocomplete="off" />
+                    </label>
+                    <div class = "font" id = "user_name_post">Username: </div>
+                    <button class="btn btn-add-post" type="submit">
+                            enter
+                    </button>
+                </form>
+            </dialog>
+            <dialog id = "dia-edit"></dialog>
+            
+        <form id="search">
+            <label class = "users">
+                <div class="search-label"> Username </div>
+                <input type="text" id ="user" class = "inputs" placeholder = "Input Authors names" autocomplete="off" />
+            </label>
+            
+            <label>
+                <div class="search-label">date</div>
+                <input type="text" id="date" class = "inputs" placeholder = "Input Date" autocomplete="off"/>
+            </label>
+            <label>
+                <div class="search-label">Hashtags</div>
+                <input type="text" id="Hashtags" class = "inputs" placeholder = "Input Hashtag" autocomplete="off"/>
+            </label>
+            
+            <button id = "filter" class = "btn btn-filter">filter</button>
+            
+            <div class ="childUsers" id = "childUsers"></div>
+            <div class = "childDates" id = "childDates"></div>
+            <div class = "childTags" id = "childTags"></div>
+        </form>
+        
+
       
-         <div class="userphotopost">
-
-            <img src="img/2.jpg">
-            <h2>Miriniv Misha<br>
-                <i class="date">11.02.2019 12:12</i>
-            </h2>
-
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 
-                <h3 class = "decription1">
-                        Nature is beautiful!
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks#butterflies
-                    </div>
-                </h3>
-            </h3>
-
-        </div>
-
+        <div id="photoPosts" ></div> 
         
-           
-
-        <div class="userphotopost">
-            <img src="img/3.jpg">
-            <h2>Alena Holubeva<br>
-                <i class="date">10.01.2019 17:30</i>
-            </h2>
-
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 </h3>
-                <h3 class = "decription1">
-                    Gorgeous sunsets, beautiful countryside, the best people-that's what is sometimes missing...
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks
-                    </div>
-                </h3>
-        </div>
-
-
-        <div class="userphotopost">
-            <img src="img/4.jpg">
-            <h2>Elizaveta Novichenko<br>
-                <i class="date">15.12.2018 16:30</i>
-            </h2>
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 </h3>
-                <h3 class = "decription1">
-                        Photos are different ...
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks
-                    </div>
-                </h3>
-        </div>
-
-
-
-        <div class="userphotopost">
-            <img src="img/5.jpg">
-            <h2>Romanova Julia<br>
-                <i class="date">15.12.2018 16:00</i>
-            </h2>
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 </h3>
-                <h3 class = "decription1">
-                        Sometimes you just need to get to an unfamiliar city and 
-                        look at everything from a different angle!
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks
-                    </div>
-                </h3>
-        </div>
-
-       
-
-        <div class="userphotopost">
-            <img src="img/6.jpg">
-            <h2>Romanova Julia<br>
-                <i class="date">15.12.2018 11:30</i>
-            </h2>
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 </h3>
-                <h3 class = "decription1">
-                        Thought aloud, and more precisely on paper
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks
-                    </div>
-                </h3>
-        </div>
-
-       
-
-        <div class="userphotopost">
-            <img src="img/7.jpg">
-            <h2>Romanova Julia<br>
-                <i class="date">25.10.2018 16:30</i>
-            </h2>
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 </h3>
-                <h3 class = "decription1">
-                        On the roofs of the city you can watch the changing scenery all day long
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks
-                    </div>
-                </h3>
-        </div>
+        <button class="btn btn-more-posts" id = "down-more"> Download more  </button>
+        
 
         
 
-        <div class="userphotopost">
-            <img src="img/8.jpg">
-            <h2>Romanova Julia<br>
-                <i class="date">25.10.2018 08:30</i>
-            </h2>
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 </h3>
-                <h3 class = "decription1">
-                        Like a light in the shower
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks
-                    </div>
-                </h3>
-        </div>
-
-       
-
-        <div class="userphotopost">
-            <img src="img/9.jpg">
-            <h2>Romanova Julia<br>
-                <i class="date">21.09.2018 16:30</i>
-            </h2>
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 </h3>
-                <h3 class = "decription1">
-                        Dacha, garden, nature and the best berries for me
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks
-                    </div>
-                </h3>
-        </div>
-
         
-
-        <div class="userphotopost">
-            <img src="img/10.jpg">
-            <h2>Romanova Julia<br>
-                <i class="date">11.09.2018 11:30</i>
-            </h2>
-            <h3 class = "decription">
-                    <button style = "position: relative ; background: hsla(309, 33%, 73%, 0.7) ; bottom: 4px; height:28px; width: 28px; margin-left: 79%">
-                            <tr>
-                                    <td>
-                                        <img src="img/like.png" >
-                                    </td>
-                                </tr>
-                        <button style = " position:absolute ; background: hsla(309, 33%, 73%, 0.7) ; height: 28px; width: 28px; " >
-                            <tr>
-                                <td>
-                                        <img src="img/kar.png" >
-                                    
-                                </td>
-                            </tr>
-                            <button style = "position: absolute; background: hsla(309, 33%, 73%, 0.7) ; width: 28px; height:  28px; margin-left : 6%" >
-                                    <tr>
-                                        <td>
-                                                <img src="img/ftcheckmark.png" >
-                                        </td>
-                                    </tr>
-                                </button> 
-                        </button> 
-                    </button>
-                  
-                 </h3>
-                <h3 class = "decription1">
-                        Soulful day cold evening!
-                    <div class = "decription2">
-                            #BSU#fpmi#musik#love#thinks
-                    </div>
-                </h3>
-        </div>
-
-
-            <button class="butt3">
-                <tr>
-                    <td><em>Download more</em></td>
-                </tr>
-            </button>
-        </div>
-
-
     </main>
 
     <footer>
-
         <div class="parant">
             <div class="child">
-                <h3 class="m"> 04.03.2019 </h3>
+                <p class="logo"> 15.04.2019 </p>
             </div>
             <div class="child">
-                <h1>
-
-                    Insta <img src="img/leaves.jpg" width="50" height="40"> Life
-                </h1>
+                <span class = "merch" role="presentation">
+                    Insta <img src="img/leaves.jpg" class = "merch " alt = "Merch"> Life
+                </span>
             </div>
             <div class="child">
 
-                <h3 class="m">
+                <h3 class="logo">
                     <div>Romanova Julia</div>
                     <div>2 course 6 group</div>
                     <div>youliaromanova99@mail.ru</div>
-
                 </h3>
             </div>
 
@@ -495,6 +130,12 @@
 
 
     </footer>
+    
+    <script src = "PostModel.js"></script>
+    <script src = "View.js"></script>
+    <script src = "User.js"></script>
+    <script src = "Controller.js"></script>
+    <!-- <script src = "test.js"></script> -->
 </body>
 
 </html>
