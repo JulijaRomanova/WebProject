@@ -1,0 +1,1 @@
+SELECT * from photo_post where (USER_ID = 'poi84657u' && DATE = '19.05.25'); 
